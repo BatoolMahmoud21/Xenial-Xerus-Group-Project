@@ -1,38 +1,112 @@
-.App {
+/* This is for HOME page*/
+.container {
+  display: flex;                
+  gap: 20px;                    
+  justify-content: center;      
+  align-items: center;          
+  height: 100vh;
+             
+}
+
+/* Styling for each box */
+.box {
+  width: 300px;                 
+  height: 300px;                
+  display: flex;                
+  justify-content: center;      
+  align-items: center;          
+  background-color: #1045a1;    
+  color: white;                 
+  border-radius: 20px;          
+  font-size: 22px;              
+  font-weight: bold;            
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+h1 {
+  color: black;
+  text-align:center;
+  font-family: 'Franklin Gothic Medium';
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h3 {
+  color: rgb(0, 0, 0);
+  text-align:center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+p {
+  color: black;
+  text-align: center;
+}
+
+header {
+  background-color: #6db2c8; /* Change the background colour of the header */
+  color: white; /* Change the text colour to contrast with the background */
+  padding: 10px 0;
+  text-align: center;
+}
+
+footer {
+  background-color: #333; /* Change the background colour of the footer */
   color: white;
+  padding: 15px 0;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.App {
+  background-color: #bed4e8cc;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.search-bar {
+  padding: 10px;
+  font-size: 16px;
+  width: 1000px; 
+  margin: 10px 0; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
+  border-radius: 8px; 
+  border: 1px solid #ccc; 
+}
+
+.research-section {
+  display: flex;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+  flex-direction: row;
+  justify-content: flex-start; 
+  align-items: flex-start;
+}
+
+.section-heading {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px; 
+}
+
+
+.graph img {
+  width: 60%;  /* Adjust this value to make the image smaller */
+  height: auto;  
+  border-radius: 8px;  
+  max-width: 100%; 
+  margin-left: 20px;
+}
+
+.graph {
+  margin-right: 20px;
+}
+
+.description {
+  color: black;
+  flex: 1;
+  margin-top: 0;
+  margin-right: 400px;
+
 }
