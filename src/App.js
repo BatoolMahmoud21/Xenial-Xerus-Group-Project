@@ -6,10 +6,10 @@ function App() {
   return (
     <div className="App">
       <header>
+        <h1 className="header">Home</h1>
         <button className="home-button" onClick={() => alert('Home clicked')}>
           Home
         </button>
-        <h1 className="header">South Asian Populations</h1>
       </header>
 
       <div>
