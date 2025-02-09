@@ -1,9 +1,40 @@
-.App {
+/* Apply light blue background to the entire body */
+body {
+  background-color: #e0f7fa; /* Light blue background for the whole page */
+  margin: 0;  /* Remove default body margins */
   font-family: sans-serif;
+}
+
+/* Main container for the East Asian page (excluding header) */
+.EastAsianPage {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 0;  /* Remove any default padding or margins */
+  align-items: flex-start;
+  padding-left: 30px;
+  padding-top: 120px;  /* Ensure content doesn't overlap the fixed header */
+  padding-bottom: 60px;  /* Ensure space for footer */
+  width: 100%;
+  background-color: transparent; /* Make sure the container has no additional background color */
+  overflow: hidden;  /* Prevent content overflow */
+}
+
+/* Styling for the header */
+header {
+  background-color: #5facc6;  /* Header background color */
+  padding: 20px;
+  width: 100%;  /* Ensure the header spans the full width of the page */
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Styling for the header text */
+.header {
+  color: rgb(7, 0, 0);
+  font-size: 2rem;
+  font-family: 'Arial', sans-serif;
 }
 
 /* Styling for the Home button */
@@ -20,44 +51,51 @@
   border-radius: 5px;
 }
 
-/* Styling for the header */
-header {
-  background-color: #5facc6;  /* Set your desired background color */
-  padding: 20px;  /* Add padding for spacing around the text */
-  width: 100%;  /* Make sure the header spans the full width of the page */
-  text-align: center;  /* Center the text inside the header */
-  position: fixed;  /* Keep the header fixed at the top */
-  top: 0;  /* Position it at the top of the page */
-  left: 0;
-  z-index: 1000;  /* Ensure it stays above other content */
-}
-
-/* Styling for the header text */
-.header {
-  color: rgb(7, 0, 0);  /* Set the color of the text inside the header */
-  font-size: 2rem;  /* Set a larger font size */
-  font-family: 'Arial', sans-serif;
-}
-
-/* Styling for the SouthAsianPage content */
-.SouthAsianPage {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align items to the left */
-  padding-left: 30px; /* Add some left padding to the content */
-  padding-top: 100px; /* Add padding to the top so content doesn't overlap the fixed header */
-}
-
-/* Style the country list section */
+/* Subheading styles for country names */
 .country-list h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 10px;
   color: #333;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #ccc;
 }
 
+/* Description text styling for the countries */
 .country-list p {
-  margin: 0.5rem 0;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  max-width: 90%;
+  word-wrap: break-word;
+}
+
+/* Optional: Add a subtle shadow around the content */
+.country-list {
+  background-color: #ffffff;  /* White background for content area */
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the footer section */
+footer {
+  background-color: #5facc6; /* Same color as the header */
+  padding: 10px;
+  width: 100%;  /* Ensure it spans the full width of the page */
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Footer text styling */
+footer p {
+  color: rgb(7, 0, 0);
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
 }

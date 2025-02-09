@@ -1,11 +1,16 @@
 import React from 'react';
 import './App.css';
-import SouthAsianPage from './SouthAsianPage'; // Import the page component
+import EastAsianPage from './EastAsianPage';  // Import the East Asian component
+import logo from './assets/logo.png';  // Import the logo
 
 function App() {
   return (
     <div className="App">
-      <SouthAsianPage /> {/* Render only the SouthAsianPage */}
+      <header>
+        <img src={logo} alt="Xenial Xerus Logo" className="logo" /> {/* Logo */}
+        <h1 className="header">East Asian Populations</h1>
+      </header>
+      <EastAsianPage /> {/* Render the East Asia page */}
     </div>
   );
 }
