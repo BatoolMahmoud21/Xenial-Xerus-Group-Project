@@ -1,17 +1,8 @@
 import React from 'react';
 import './App.css';
+import RoundedBoxes from './RoundedBoxes'; // Import RoundedBoxes component
 
-//creates the 2 interactable boxes labelled south and east asia - when clicked on will lead to the other pages
-const RoundedBoxes = () => {
-  return (
-    <div className="container">
-      <div className="box">South Asia</div>
-      <div className="box">East Asia</div>
-    </div>
-  );
-};
-
-function App() {
+function Home() {
   return (
     <div className="App">
       <header>
@@ -39,6 +30,7 @@ function App() {
         </div>
       </section>
 
+      {/* Call the RoundedBoxes component which will allow navigation */}
       <RoundedBoxes />
 
       <h2 className="section-heading">Graph Showing Type 2 Diabetes Prevalence in Different Ethnicities in the UK</h2>
@@ -57,8 +49,6 @@ function App() {
               PLACEHOLDER FOR FIRST IMAGE DESCRIPTION 
               PLACEHOLDER FOR FIRST IMAGE DESCRIPTION  
               PLACEHOLDER FOR FIRST IMAGE DESCRIPTION
-
-
             </p>
           </div>
         </div>
@@ -76,7 +66,6 @@ function App() {
               PLACEHOLDER FOR SECOND IMAGE DESCRIPTION
               PLACEHOLDER FOR SECOND IMAGE DESCRIPTION
               PLACEHOLDER FOR SECOND IMAGE DESCRIPTION
-
             </p>
           </div>
         </div>
@@ -85,7 +74,7 @@ function App() {
       <footer>
         <p>
           1. Mu, Y.M., Misra, A., Adam, J.M., Chan, S.P., Chow, F.C., Cunanan, E.C., Deerochanawong, C., Jang, H.C., Khue, N.T., Sheu, W.H.H. and Tan, K.E., 2012. Managing diabetes in Asia: overcoming obstacles and the role of DPP-IV inhibitors. Diabetes research and clinical practice, 95(2), pp.179-188.
-          <br/>
+          <br />
           2. Goff, L.M., 2019. Ethnicity and type 2 diabetes in the UK. Diabetic Medicine, 36(8), pp.927-938.
         </p>
       </footer>
@@ -93,4 +82,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
