@@ -21,7 +21,7 @@ function Home() {
         className="search-bar"
       />
 
-      <section className="main-image">
+      <section className="home-main-image">
         <div className="heatmap">
           <img
             src='https://www.visualcapitalist.com/wp-content/uploads/2023/05/World_diabetes_WB_IDF_2021-2.jpg'
@@ -30,7 +30,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Call the RoundedBoxes component which will allow navigation */}
+      
       <RoundedBoxes />
 
       <h2 className="section-heading">Graph Showing Type 2 Diabetes Prevalence in Different Ethnicities in the UK</h2>
