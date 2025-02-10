@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Xenial-Xerus-Group-Project/static/css/main.afdcb535.css",
+    "main.js": "/Xenial-Xerus-Group-Project/static/js/main.03d0a020.js",
+    "index.html": "/Xenial-Xerus-Group-Project/index.html",
+    "main.afdcb535.css.map": "/Xenial-Xerus-Group-Project/static/css/main.afdcb535.css.map",
+    "main.03d0a020.js.map": "/Xenial-Xerus-Group-Project/static/js/main.03d0a020.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.afdcb535.css",
+    "static/js/main.03d0a020.js"
+  ]
+}
