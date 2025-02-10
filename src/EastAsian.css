@@ -20,7 +20,7 @@ body {
 
 /* Styling for the header in East Asia */
 .EastAsia header {
-  background-color: #5facc6;  /* Header background color */
+  background-color: #ec7878;  /* Header background color */
   padding: 20px;
   width: 100%;  /* Ensure the header spans the full width of the page */
   text-align: center;
@@ -43,7 +43,7 @@ body {
   top: 20px;
   left: 20px;
   padding: 10px 20px;
-  background-color: #5facc6;
+  background-color: #ec7878;
   color: rgb(2, 0, 0);
   border: none;
   cursor: pointer;
@@ -82,7 +82,7 @@ body {
 
 /* Styling for the footer section in East Asia */
 .EastAsia footer {
-  background-color: #5facc6; /* Same color as the header */
+  background-color: #ec7878; /* Same color as the header */
   padding: 10px;
   width: 100%;  /* Ensure it spans the full width of the page */
   text-align: center;
