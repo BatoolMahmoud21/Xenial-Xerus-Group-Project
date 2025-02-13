@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './SouthAsia.css'; 
 
 function SouthAsia() {  
@@ -13,13 +14,22 @@ function SouthAsia() {
 
       <div className="country-list">
         <h2>India</h2>
-        <p>India is a country in South Asia. It is the seventh-largest country by land area, and the second-most populous country.</p>
-        
+        <p>
+        Genetic studies have uncovered several significant single nucleotide polymorphisms (SNPs) that are associated with an increased risk of Type 2 diabetes in the Indian population. Key SNPs include:
+        </p>
+
         <h2>Bangladesh</h2>
-        <p>Bangladesh is a country in South Asia, located on the Bay of Bengal. It is known for its rich culture and natural beauty.</p>
+        <p>
+        Several key genetic variants, or single nucleotide polymorphisms (SNPs), have been identified in the Bangladeshi population that contribute to
+        </p>
 
         <h2>Pakistan</h2>
-        <p>Pakistan is a country in South Asia. It shares borders with India, Afghanistan, China, and Iran, and has a rich history.</p>
+        <p>Research has identified several SNPs that play a significant role in the genetic risk for Type 2 diabetes in the Pakistani population. These include:  
+        </p>
+      </div>
+
+      <div className="summary-link-container">
+        <Link to="/summary" className="summary-link">View Summary Statistics</Link>
       </div>
     </div>
   );

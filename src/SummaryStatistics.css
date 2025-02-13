@@ -1,0 +1,104 @@
+/* Apply background color to the entire body */
+body {
+    background-color: #ec7878;  /* Light red background for the whole page */
+    margin: 0;  /* Remove default body margins */
+    font-family: sans-serif;
+  }
+  
+  /* Main container for the Summary Statistics page (excluding header) */
+  .SummaryStatistics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center the content horizontally */
+    justify-content: flex-start; /* Align the content to the top */
+    padding-top: 120px;  /* Ensure content doesn't overlap the fixed header */
+    padding-bottom: 60px;  /* Ensure space for footer */
+    width: 100%;
+    background-color: transparent;  /* Make sure the container has no additional background color */
+    overflow: hidden;  /* Prevent content overflow */
+  }
+  
+  /* Styling for the header in Summary Statistics */
+  .SummaryStatistics header {
+    background-color: #ec7878;  /* Header background color */
+    padding: 20px;
+    width: 100%;  /* Ensure the header spans the full width of the page */
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  /* Styling for the header text inside Summary Statistics */
+  .SummaryStatistics .header {
+    color: rgb(7, 0, 0);
+    font-size: 2rem;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Styling for the Home button */
+  .SummaryStatistics .home-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #ec7878;
+    color: rgb(2, 0, 0);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  /* Subheading styles for the Tajima's D statistics section */
+  .SummaryStatistics .stats-list h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 3rem;
+    margin-bottom: 10px;
+    color: #333;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  /* Description text styling for Tajima's D statistics */
+  .SummaryStatistics .stats-list p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    max-width: 90%;
+    word-wrap: break-word;
+  }
+  
+  /* Optional: Add a subtle shadow around the content */
+  .SummaryStatistics .stats-list {
+    background-color: #ffffff;  /* White background for content area */
+    padding: 20px;
+    margin-top: 30px;
+    /* Removed left and right margins to keep it centered */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);  /* Wider and stronger shadow */
+    width: 80%;  /* Adjust width to make it more centered */
+    max-width: 1200px;  /* Optional: Add a maximum width to prevent it from getting too wide on large screens */
+  }
+  
+  /* Styling for the footer section in Summary Statistics */
+  .SummaryStatistics footer {
+    background-color: #ec7878;  /* Same color as the header */
+    padding: 10px;
+    width: 100%;  /* Ensure it spans the full width of the page */
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  /* Footer text styling */
+  .SummaryStatistics footer p {
+    color: rgb(7, 0, 0);
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+  }
+  
