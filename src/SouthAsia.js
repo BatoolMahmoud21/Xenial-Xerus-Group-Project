@@ -20,7 +20,7 @@ function SouthAsia() {
 
         <h2>Bangladesh</h2>
         <p>
-        Several key genetic variants, or single nucleotide polymorphisms (SNPs), have been identified in the Bangladeshi population that contribute to
+        Several key genetic variants, or single nucleotide polymorphisms (SNPs), have been identified in the Bangladeshi population that contribute to Type 2 diabetes. These include:
         </p>
 
         <h2>Pakistan</h2>
