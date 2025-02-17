@@ -130,26 +130,53 @@ class GeneOntology(db.Model):
         return f'<GeneOntology {self.gene_id} - {self.ontology_id}>'
 
 
+@app.route('/')
+def home():
+    return "Welcome to the Flask API!"
+
+@app.route('/message', methods=['GET'])
+def message():
+    return "Hello, this is a simple message!"
+
+@app.route('/api/search', methods=['GET'])
 def search():
-    query = request.args.get('query','')
-    rs_id = request.args.get('rs_id','')
+    query = request.args.get('query', '')
+    rs_id = request.args.get('rs_id', '')
+    chromosome = request.args.get('chromosome', '')
 
     results_query = Gene.query
+    
+    # Apply filters based on provided parameters
     if query:
-         results_query = results_query.filter(Gene.gene_symbol.ilike(f'%{query}%'))
+        results_query = results_query.filter(Gene.gene_symbol.ilike(f'%{query}%'))
     if rs_id:
-        # Apply rs_id filter if provided (searching in SNPs table)
         results_query = results_query.join(SNP).filter(SNP.rs_id.ilike(f'%{rs_id}%'))
-    results = results_query.all()
+    if chromosome:
+        results_query = results_query.filter(Gene.chromosome == chromosome)
 
-    search_results = [
-        {
-            'gene_symbol': gene.gene_symbol,
-            'chromosome': gene.chromosome,
-            'rs_ids': [snp.rs_id for snp in gene.snps]  # Assuming SNPs are related to Gene
-        }
-        for gene in results
-    ]
+    results = results_query.all()
+    
+    # Enhanced response with more details
+    search_results = [{
+        'gene_symbol': gene.gene_symbol,
+        'gene_name': gene.gene_name,
+        'chromosome': gene.chromosome,
+        'position': f"{gene.start_pos}-{gene.end_pos}",
+        'snps': [{
+            'rs_id': snp.rs_id,
+            'position': snp.pos,
+            'alleles': f"{snp.reference_allele}/{snp.alternate_allele}",
+            'summary_stats': [{
+                'population': stat.population.population_name,
+                'tajimas_d': stat.tajimas_d,
+                'ihs': stat.ihs
+            } for stat in snp.summary_stats] if snp.summary_stats else [],
+            'phenotypes': [{
+                'name': sp.phenotype.phenotype_name,
+                'description': sp.phenotype.description
+            } for sp in snp.snp_phenotypes] if snp.snp_phenotypes else []
+        } for snp in gene.snps]
+    } for gene in results]
     
     return jsonify(search_results)
 
