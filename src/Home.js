@@ -16,7 +16,7 @@ function Home() {
     if (searchQuery) {
       try {
         const response = await axios.get('http://localhost:5000/api/search', {
-          params: { query: searchQuery },  // Send the search query as a parameter
+          params: { query: searchQuery, chromosome: chromosome, rs_id: rd_id },  // Send the search query as a parameter
         });
         setResults(response.data);  // Set the search results
       } catch (error) {
