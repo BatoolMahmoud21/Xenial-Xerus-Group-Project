@@ -129,5 +129,29 @@ class GeneOntology(db.Model):
     def __repr__(self):
         return f'<GeneOntology {self.gene_id} - {self.ontology_id}>'
 
+
+def search():
+    query = request.args.get('query','')
+    rs_id = request.args.get('rs_id','')
+
+    results_query = Gene.query
+    if query:
+         results_query = results_query.filter(Gene.gene_symbol.ilike(f'%{query}%'))
+    if rs_id:
+        # Apply rs_id filter if provided (searching in SNPs table)
+        results_query = results_query.join(SNP).filter(SNP.rs_id.ilike(f'%{rs_id}%'))
+    results = results_query.all()
+
+    search_results = [
+        {
+            'gene_symbol': gene.gene_symbol,
+            'chromosome': gene.chromosome,
+            'rs_ids': [snp.rs_id for snp in gene.snps]  # Assuming SNPs are related to Gene
+        }
+        for gene in results
+    ]
+    
+    return jsonify(search_results)
+
 if __name__ == '__main__':
     app.run(debug=True)
