@@ -1,29 +1,40 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
-import RoundedBoxes from './RoundedBoxes'; // Import RoundedBoxes component
+import RoundedBoxes from './RoundedBoxes';
 
 function Home() {
-  // State to store the search query and results
   const [query, setQuery] = useState('');
+  const [chromosome, setChromosome] = useState('');
+  const [rs_id, setRsId] = useState('');
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Function to handle search input change
   const handleSearch = async (e) => {
     const searchQuery = e.target.value;
     setQuery(searchQuery);
 
     if (searchQuery) {
+      setLoading(true);
+      setError(null);
       try {
-        const response = await axios.get('http://localhost:5000/api/search', {
-          params: { query: searchQuery, chromosome: chromosome, rs_id: rd_id },  // Send the search query as a parameter
+        const response = await axios.get('http://127.0.0.1:5000/api/search', {
+          params: { 
+            query: searchQuery,
+            chromosome: chromosome,
+            rs_id: rs_id
+          }
         });
-        setResults(response.data);  // Set the search results
+        setResults(response.data);
       } catch (error) {
         console.error('Error fetching search results:', error);
+        setError('Failed to fetch results. Please try again.');
+      } finally {
+        setLoading(false);
       }
     } else {
-      setResults([]);  // Clear results if the query is empty
+      setResults([]);
     }
   };
 
@@ -38,23 +49,83 @@ function Home() {
         This website is an SNP browser website dedicated to highlighting SNPs associated with Type 2 diabetes in populations understudied, specifically Southern and Eastern Asia. This website includes gene ontology, SNP location, p-values for such associations as well as a number of summary statistics.
       </p>
 
-      {/* Search Bar */}
-      <input
-        type="text"
-        placeholder="Search..."
-        value={query}
-        onChange={handleSearch}
-        className="search-bar"
-      />
+      {/* Search Controls */}
+      <div className="search-controls">
+        <input
+          type="text"
+          placeholder="Search by gene symbol..."
+          value={query}
+          onChange={handleSearch}
+          className="search-bar"
+        />
+        <input
+          type="text"
+          placeholder="Chromosome"
+          value={chromosome}
+          onChange={(e) => setChromosome(e.target.value)}
+          className="search-bar"
+        />
+        <input
+          type="text"
+          placeholder="RS ID"
+          value={rs_id}
+          onChange={(e) => setRsId(e.target.value)}
+          className="search-bar"
+        />
+      </div>
 
-      {/* Search Results */}
+      {/* Loading and Error States */}
+      {loading && <div className="loading">Loading results...</div>}
+      {error && <div className="error">{error}</div>}
+
+      {/* Enhanced Search Results */}
       {results.length > 0 && (
         <div className="search-results">
-          <ul>
-            {results.map((result, index) => (
-              <li key={index}>{result}</li>
-            ))}
-          </ul>
+          {results.map((result, index) => (
+            <div key={index} className="result-card">
+              <h3>{result.gene_symbol} ({result.gene_name})</h3>
+              <p>Chromosome: {result.chromosome}</p>
+              <p>Position: {result.position}</p>
+              
+              {result.snps && result.snps.length > 0 && (
+                <div className="snps-list">
+                  <h4>Associated SNPs:</h4>
+                  {result.snps.map((snp, idx) => (
+                    <div key={idx} className="snp-card">
+                      <h5>{snp.rs_id}</h5>
+                      <p>Position: {snp.position}</p>
+                      <p>Alleles: {snp.alleles}</p>
+                      
+                      {snp.summary_stats && snp.summary_stats.length > 0 && (
+                        <div className="stats">
+                          <h6>Population Statistics:</h6>
+                          {snp.summary_stats.map((stat, statIdx) => (
+                            <div key={statIdx} className="stat-item">
+                              <p>Population: {stat.population}</p>
+                              <p>Tajima's D: {stat.tajimas_d}</p>
+                              <p>iHS: {stat.ihs}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      
+                      {snp.phenotypes && snp.phenotypes.length > 0 && (
+                        <div className="phenotypes">
+                          <h6>Associated Phenotypes:</h6>
+                          {snp.phenotypes.map((phenotype, phenIdx) => (
+                            <div key={phenIdx} className="phenotype-item">
+                              <p>{phenotype.name}</p>
+                              <p>{phenotype.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       )}
 
