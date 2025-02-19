@@ -1,4 +1,9 @@
-from flask import Flask, jsonify, request
+import sqlite3
+import matplotlib
+import matplotlib.pyplot as plt
+import pandas as pd
+import plotly.express as px
+from flask import Flask, jsonify, request, render_template, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS  # Add this
 
@@ -130,14 +135,17 @@ class GeneOntology(db.Model):
         return f'<GeneOntology {self.gene_id} - {self.ontology_id}>'
 
 
+
+
+# Define route for the main page
 @app.route('/')
 def home():
-    return "Welcome to the Flask API!"
+    return render_template ('index.html')
 
 @app.route('/message', methods=['GET'])
 def message():
     return "Hello, this is a simple message!"
-
+    
 @app.route('/api/search', methods=['GET'])
 def search():
     query = request.args.get('query', '')
@@ -149,10 +157,17 @@ def search():
     # Apply filters based on provided parameters
     if query:
         results_query = results_query.filter(Gene.gene_symbol.ilike(f'%{query}%'))
+    if query is None:
+        return "Error: Data is unavailable."
     if rs_id:
         results_query = results_query.join(SNP).filter(SNP.rs_id.ilike(f'%{rs_id}%'))
+    if rs_id is None:
+        return "Error: Data is unavailable."
     if chromosome:
         results_query = results_query.filter(Gene.chromosome == chromosome)
+    if chromosome is None:
+        return "Error: Data is unavailable."
+
 
     results = results_query.all()
     
