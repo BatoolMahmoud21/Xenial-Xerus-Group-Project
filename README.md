@@ -1,10 +1,37 @@
 HEAD
-# Getting Started with Create React App
+# Xenial-Xerus 
+Xenial-Xerus is a Type 2 Diabetes SNP Retrieval Web App. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Project Overview 
+This project involves the development of a web-based application designed to retrieve, analyze and visualise SNP (Single Nucleotide Polymorphism) data associated with Type 2 Diabetes within the South and East Asian Population.
+
+
+# Software Architecture
+### Frontend
+* HTML/CSS: Uses HTML templates and CSS for a consistent UI, focusing on the 'Bebas Neue' font and a cohesive color scheme.
+* JavaScript: Enables interactive elements and dynamic content loading, handling form inputs, and rendering Plotly charts.
+### Backend
+* Flask Application: Handles routing, session management, and communication between the frontend and the database.
+* SQLite Database: Stores genetic data, population information, and SNP annotations for efficient querying.
+* Data Analysis and Visualization: Utilizes NumPy, Pandas for data manipulation, and Matplotlib, Seaborn, and Plotly for generating plots and interactive visualizations.
+
+# How to use
+1. Clone the repository to your local machine.
+2. Install the required dependencies listed in the project documentation.
+3. Run the application using your preferred development environment.
+
+# Contributors 
+* Batool Mahmoud
+* Sneha Dharmeche
+* Maryam Koddus
+* Jessica Ibada-Nwafor
+* Precious Aghara# Getting Started with Create React App
+
+
 
 ## Available Scripts
-
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 In the project directory, you can run:
 
 ### `npm start`
