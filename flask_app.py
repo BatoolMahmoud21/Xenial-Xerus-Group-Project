@@ -36,3 +36,7 @@ def np():
         })
 
     return jsonify(snps)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
