@@ -37,7 +37,7 @@ function SouthAsia() {
         <button className="home-button" onClick={() => alert('Home clicked')}>
           Home
         </button>
-        <h1 className="header">Tajima D Summary Statistics</h1>
+        <h1 className="header">Tajima's D Summary Statistics</h1>
       </header>
 
       <div className="stats-list">
