@@ -6,6 +6,7 @@ import SouthAsia from './SouthAsia';
 import EastAsia from './EastAsia';
 import Home from './Home';  
 import SummaryStatistics from './SummaryStatistics'; 
+import SNPPage from './SNPPage';
 
 function Main() {
   return (
@@ -14,8 +15,7 @@ function Main() {
         <Routes>
           
           <Route path="/" element={<Home />} />
-          
-          
+          <Route path="/snp-page" element={<SNPPage/>} />
           <Route path="/south-asia" element={<SouthAsia />} />
           <Route path="/east-asia" element={<EastAsia />} />
           <Route path="/summary" element={<SummaryStatistics />} />
