@@ -68,7 +68,7 @@ class Population(db.Model):
         return f'<Population {self.population_name}>'
 
         
-# 5.SUMMARY_STATS
+# 5.SUMMARY_STATS - subject to change
 
 class SummaryStats(db.Model):
     stats_id = db.Column(db.Integer, primary_key=True)
