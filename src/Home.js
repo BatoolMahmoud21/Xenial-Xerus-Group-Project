@@ -1,41 +1,22 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './App.css';
 import RoundedBoxes from './RoundedBoxes';
 
 function Home() {
-  const [query, setQuery] = useState('');
-  const [chromosome, setChromosome] = useState('');
-  const [rs_id, setRsId] = useState('');
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const[searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]); 
+  
 
-  const handleSearch = async (e) => {
-    const searchQuery = e.target.value;
-    setQuery(searchQuery);
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
+    const handleSearchSubmit = (event) => {
+      event.preventDefault();
 
-    if (searchQuery) {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await axios.get('http://127.0.0.1:5000/api/search', {
-          params: { 
-            query: searchQuery,
-            chromosome: chromosome,
-            rs_id: rs_id
-          }
-        });
-        setResults(response.data);
-      } catch (error) {
-        console.error('Error fetching search results:', error);
-        setError('Failed to fetch results. Please try again.');
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      setResults([]);
-    }
+      fetch('http://127.0.0.1:5000/api/search?query=${searchQuery}')
+        .then((response) => response.json())
+        .then((data) => setSearchResults(data))
+        .catch((error) => console.error('Error fetching data:', error));
   };
 
   return (
@@ -50,84 +31,43 @@ function Home() {
       </p>
 
       {/* Search Controls */}
-      <div className="search-controls">
+      <form onSubmit={handleSearchSubmit}>
         <input
           type="text"
-          placeholder="Search by gene symbol..."
-          value={query}
-          onChange={handleSearch}
+          placeholder="Search SNP..."
           className="search-bar"
+          value={searchQuery}
+          onChange={handleSearchChange}
         />
-        <input
-          type="text"
-          placeholder="Chromosome"
-          value={chromosome}
-          onChange={(e) => setChromosome(e.target.value)}
-          className="search-bar"
-        />
-        <input
-          type="text"
-          placeholder="RS ID"
-          value={rs_id}
-          onChange={(e) => setRsId(e.target.value)}
-          className="search-bar"
-        />
-      </div>
-
-      {/* Loading and Error States */}
-      {loading && <div className="loading">Loading results...</div>}
-      {error && <div className="error">{error}</div>}
-
-      {/* Enhanced Search Results */}
-      {results.length > 0 && (
-        <div className="search-results">
-          {results.map((result, index) => (
-            <div key={index} className="result-card">
-              <h3>{result.gene_symbol} ({result.gene_name})</h3>
-              <p>Chromosome: {result.chromosome}</p>
-              <p>Position: {result.position}</p>
-              
-              {result.snps && result.snps.length > 0 && (
-                <div className="snps-list">
-                  <h4>Associated SNPs:</h4>
-                  {result.snps.map((snp, idx) => (
-                    <div key={idx} className="snp-card">
-                      <h5>{snp.rs_id}</h5>
-                      <p>Position: {snp.position}</p>
-                      <p>Alleles: {snp.alleles}</p>
-                      
-                      {snp.summary_stats && snp.summary_stats.length > 0 && (
-                        <div className="stats">
-                          <h6>Population Statistics:</h6>
-                          {snp.summary_stats.map((stat, statIdx) => (
-                            <div key={statIdx} className="stat-item">
-                              <p>Population: {stat.population}</p>
-                              <p>Tajima's D: {stat.tajimas_d}</p>
-                              <p>iHS: {stat.ihs}</p>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      
-                      {snp.phenotypes && snp.phenotypes.length > 0 && (
-                        <div className="phenotypes">
-                          <h6>Associated Phenotypes:</h6>
-                          {snp.phenotypes.map((phenotype, phenIdx) => (
-                            <div key={phenIdx} className="phenotype-item">
-                              <p>{phenotype.name}</p>
-                              <p>{phenotype.description}</p>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        <button type="submit">Search</button>
+      </form>
+      {/* Display search results */}
+      {searchResults.length > 0 && (
+        <table border="1" cellpadding="5" cellspacing="0" style={{ borderCollapse: 'collapse' }}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>SNP Name</th>
+              <th>Gene</th>
+              <th>Location</th>
+              <th>P-Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {searchResults.map((snp) => (
+              <tr key={snp.id}>
+                <td>{snp.id}</td>
+                <td>{snp.snp_name}</td>
+                <td>{snp.gene}</td>
+                <td>{snp.location}</td>
+                <td>{snp.p_value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
+      
+    
 
       <section className="home-main-image">
         <div className="heatmap">
