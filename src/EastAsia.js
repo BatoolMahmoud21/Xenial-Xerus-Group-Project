@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './EastAsian.css';
 
 function EastAsia() {
@@ -24,7 +25,10 @@ function EastAsia() {
         <p>
           Several SNPs have been identified in the South Korean population that are associated with Type 2 diabetes risk:
         </p>
+      </div>
 
+      <div className="summary-link-container">
+        <Link to="/summary" className="summary-link">View Summary Statistics</Link>
       </div>
     </div>
   );
