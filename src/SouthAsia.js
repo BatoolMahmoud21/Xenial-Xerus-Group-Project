@@ -51,6 +51,7 @@ function SouthAsia() {
               className="summary-image"
               onClick={() => openModal(BangChr6_2)}
             />
+            
             <button
               className="download-button"
               onClick={() => downloadImage(BangChr6_2, 'BangChr6_2.png')}
@@ -173,10 +174,13 @@ function SouthAsia() {
           </div>
         </div>
       )}
-
+      
       <footer>
-        <p>Summary Statistics for South Asia</p>
-      </footer>
+  <p>Summary Statistics for South Asia</p>
+  <p className="footer-group-name">
+    © 2025 Xenial Xerus. All rights reserved.
+  </p>
+</footer>
     </div>
   );
 }

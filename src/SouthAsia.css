@@ -4,6 +4,8 @@ body {
   margin: 0;  /* Remove default body margins */
   font-family: sans-serif;
   overflow-x: hidden; /* Prevent horizontal scrolling */
+  display: flex;
+  flex-direction: column;
   height: 100vh; /* Ensure the body takes up the entire viewport height */
 }
 
@@ -11,15 +13,15 @@ body {
 .SouthAsia {
   display: flex;
   flex-direction: column;
-  align-items: center;  /* Center the content horizontally */
-  justify-content: flex-start;  /* Align the content to the top */
-  padding-top: 120px;  /* Ensure content doesn't overlap the fixed header */
-  padding-bottom: 60px;  /* Ensure space for footer */
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
-  background-color: transparent;  /* Make sure the container has no additional background color */
-  min-height: 100vh;  /* Ensure the page content stretches at least to the full height of the viewport */
-  position: relative;  /* Necessary for footer positioning */
-  overflow: hidden;  /* Prevent content overflow */
+  background-color: transparent;
+  flex-grow: 1;  /* Ensures the content grows and pushes footer down */
+  padding-top: 120px;  /* Ensure content doesn't overlap the fixed header */
+  padding-bottom: 50px;  /* Provides extra space for the footer */
+  overflow-x: hidden;  /* To avoid horizontal scrollbars */
+  margin: 0;  /* Remove any margins from the container */
 }
 
 /* Styling for the header in South Asia */
@@ -176,17 +178,20 @@ body {
 /* Styling for the footer section in South Asia */
 .SouthAsia footer {
   background-color: #ec7878;  /* Same color as the header */
-  padding: 10px;
+  padding: 20px;
   width: 100%;
   text-align: center;
-  position: relative;  /* Position relative to the content */
-  margin-top: auto;  /* Ensures the footer is at the bottom */
+  font-size: 1rem;
+  color: rgb(7, 0, 0);  /* Footer text color */
+  position: relative;
+  bottom: 0;
+  margin-top: 50px;  /* Ensures footer sticks at the bottom */
+  z-index: 1000;
+  margin-top: auto; /* Push the footer to the bottom if there's less content */
 }
 
 /* Footer text styling */
 .SouthAsia footer p {
-  color: rgb(7, 0, 0);
-  font-size: 1rem;
-  font-family: 'Arial', sans-serif;
   margin: 0;
+  color: black;  /* Footer text color in black */
 }
