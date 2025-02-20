@@ -153,9 +153,11 @@ function Home() {
 
           <div className="description">
             <p>
-              PLACEHOLDER FOR FIRST IMAGE DESCRIPTION
-              PLACEHOLDER FOR FIRST IMAGE DESCRIPTION
-              PLACEHOLDER FOR FIRST IMAGE DESCRIPTION
+              The lack of clinical data in populations of South Asian descent such as Indian, Bangladeshi and Pakistani 
+              can cause many issues in the diagnosis and treatment of type 2 diabetes. As shown on figure 1, 
+              the percentage of doctor diagnosed type 2 diabetes in these populations are much higher than that of the general population. 
+              This highlights the requirement needed to further research in these populations; 
+              particularly in SNPs associated with this disease.
             </p>
           </div>
         </div>
@@ -170,9 +172,9 @@ function Home() {
 
           <div className="description">
             <p>
-              PLACEHOLDER FOR SECOND IMAGE DESCRIPTION
-              PLACEHOLDER FOR SECOND IMAGE DESCRIPTION
-              PLACEHOLDER FOR SECOND IMAGE DESCRIPTION
+              The image here on the left indicates that future prevalence of type 2 diabetes in not only South Asian populations 
+              but also Asian populations as a wholistic population. This further proves that a stronger and more immediate effort must take place 
+              in clinical research to identify all SNPs associated with type 2 diabetes. 
             </p>
           </div>
         </div>
