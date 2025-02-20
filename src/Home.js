@@ -3,20 +3,20 @@ import './App.css';
 import RoundedBoxes from './RoundedBoxes';
 
 function Home() {
-  const[searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]); 
-  
 
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
-    const handleSearchSubmit = (event) => {
-      event.preventDefault();
 
-      fetch('http://127.0.0.1:5000/api/search?query=${searchQuery}')
-        .then((response) => response.json())
-        .then((data) => setSearchResults(data))
-        .catch((error) => console.error('Error fetching data:', error));
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+
+    fetch(`http://127.0.0.1:5000/api/search?query=${searchQuery}`) 
+      .then((response) => response.json())
+      .then((data) => setSearchResults(data))
+      .catch((error) => console.error('Error fetching data:', error));
   };
 
   return (
@@ -37,10 +37,11 @@ function Home() {
           placeholder="Search SNP..."
           className="search-bar"
           value={searchQuery}
-          onChange={handleSearchChange}
+          onChange={handleSearch}
         />
         <button type="submit">Search</button>
       </form>
+
       {/* Display search results */}
       {searchResults.length > 0 && (
         <table border="1" cellpadding="5" cellspacing="0" style={{ borderCollapse: 'collapse' }}>
@@ -56,18 +57,15 @@ function Home() {
           <tbody>
             {searchResults.map((snp) => (
               <tr key={snp.id}>
-                <td>{snp.id}</td>
+
                 <td>{snp.snp_name}</td>
                 <td>{snp.gene}</td>
-                <td>{snp.location}</td>
-                <td>{snp.p_value}</td>
+                
               </tr>
             ))}
           </tbody>
         </table>
       )}
-      
-    
 
       <section className="home-main-image">
         <div className="heatmap">
