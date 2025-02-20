@@ -1,10 +1,9 @@
 
 import sqlite3
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+
 
 @app.route('/')
 def welcome():
@@ -26,12 +25,12 @@ def np():
         query = """
             SELECT
                 SNPS.rs_id,
-                GENES.gene_symbol
-                GENES.start_pos
+                GENES.gene_symbol,
+                GENES.start_pos,
                 GENES.end_pos 
             FROM SNPS 
-            JOIN GENES ON SNPS.gene_id = GENES.id
-            WHERE SNPS.rs_id LIKE ?
+            JOIN GENES ON SNPS.gene_id = GENES.gene_id
+            WHERE SNPS.rs_id LIKE ?;
             """ 
         cursor.execute(query,('%' + search_query + '%',))
         rows = cursor.fetchall()
