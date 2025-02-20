@@ -99,7 +99,7 @@ footer p {
 
 
 .graph img {
-  width: 65%;  
+  width: 50%;  
   height: auto;  
   border-radius: 8px;  
   max-width: 100%; 
@@ -115,9 +115,9 @@ footer p {
   flex-grow: 1;
   margin-top: 0;
   margin-left: 0;
-  max-width: 500px;
+  max-width: 300px;
   word-wrap: break-word;
-  margin-right: 800px;
+  margin-right: 300px;
 
 }
 
@@ -140,7 +140,7 @@ footer p {
 .home-main-image img {
   width: 30%;              
   max-width: 100%; 
-  margin-left: 900px;           
+  margin-left: 550px;           
   margin-right: 0px;  
   border-radius: 15px;       
 }
