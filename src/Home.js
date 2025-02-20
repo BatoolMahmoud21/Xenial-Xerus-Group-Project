@@ -13,7 +13,7 @@ function Home() {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
 
-    fetch(`http://127.0.0.1:5000/api/search?query=${searchQuery}`) 
+    fetch(`/api/search?query=${searchQuery}`) 
       .then((response) => response.json())
       .then((data) => setSearchResults(data))
       .catch((error) => console.error('Error fetching data:', error));
