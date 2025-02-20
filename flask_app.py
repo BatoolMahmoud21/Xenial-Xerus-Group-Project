@@ -1,4 +1,3 @@
-
 import sqlite3
 from flask import Flask, request, jsonify
 
@@ -9,7 +8,7 @@ def welcome():
     return "Welcome"
 
 @app.route('/api/search', methods=['GET'])
-def search_snp():
+def np():
     search_query = request.args.get('query', '')
     print(f"Searching for SNPs with query: {search_query}")
     
@@ -21,7 +20,7 @@ def search_snp():
         cursor = conn.cursor()
 
         print(f"Executing query to search for SNP: {search_query}")
-        cursor.execute("SELECT * FROM SNPS WHERE ID LIKE ?", ('%' + search_query + '%',))
+        cursor.execute("SELECT * FROM SNPS WHERE rs_id LIKE ?", ('%' + search_query + '%',))
         rows = cursor.fetchall()
         print(f"Rows found: {rows}")
         conn.close()
