@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Xenial-Xerus-Group-Project/static/css/main.c6cfca2f.css",
-    "main.js": "/Xenial-Xerus-Group-Project/static/js/main.a1009d75.js",
+    "main.css": "/Xenial-Xerus-Group-Project/static/css/main.55fe98c1.css",
+    "main.js": "/Xenial-Xerus-Group-Project/static/js/main.461c7bbc.js",
     "index.html": "/Xenial-Xerus-Group-Project/index.html",
-    "main.c6cfca2f.css.map": "/Xenial-Xerus-Group-Project/static/css/main.c6cfca2f.css.map",
-    "main.a1009d75.js.map": "/Xenial-Xerus-Group-Project/static/js/main.a1009d75.js.map"
+    "main.55fe98c1.css.map": "/Xenial-Xerus-Group-Project/static/css/main.55fe98c1.css.map",
+    "main.461c7bbc.js.map": "/Xenial-Xerus-Group-Project/static/js/main.461c7bbc.js.map"
   },
   "entrypoints": [
-    "static/css/main.c6cfca2f.css",
-    "static/js/main.a1009d75.js"
+    "static/css/main.55fe98c1.css",
+    "static/js/main.461c7bbc.js"
   ]
 }
