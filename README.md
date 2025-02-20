@@ -9,7 +9,7 @@ This project involves the development of a web-based application designed to ret
 
 # Software Architecture
 ### Frontend
-* HTML/CSS: Uses HTML templates and CSS for a consistent UI, focusing on the 'Bebas Neue' font and a cohesive color scheme.
+* HTML/CSS: Uses HTML templates and CSS for a consistent UI, and a cohesive color scheme.
 * JavaScript: Enables interactive elements and dynamic content loading, handling form inputs, and rendering Plotly charts.
 ### Backend
 * Flask Application: Handles routing, session management, and communication between the frontend and the database.
