@@ -1,61 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';  // Import useLocation
 
-const SNPPage = () => {
-  const [snps, setSnps] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Fetch SNP data from your Flask API when the component mounts
-  useEffect(() => {
-    fetch('http://127.0.0.1:5000/api/search?query=rs7903146')  // Replace with your actual endpoint
-      .then(response => response.json())  // Parse the response as JSON
-      .then(data => {
-        setSnps(data);  // Store the SNP data in state
-        setLoading(false);  // Update loading state
-      })
-      .catch(err => {
-        setError('Error fetching SNP data: ' + err.message);  // Handle errors
-        setLoading(false);
-      });
-  }, []); // Empty dependency array means this runs only once after the first render
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+function SNPPage() {
+  // Access the search results from location state
+  const { state } = useLocation();
+  const { searchResults } = state || {};  // Extract searchResults from state
 
   return (
-    <div>
-      <h1>SNP Data</h1>
-      {snps.length === 0 ? (
-        <p>No SNP data found.</p>
-      ) : (
-        <table>
+    <div className="SNPPage">
+      <h1>SNP Search Results</h1>
+      
+      {/* Display search results in SNPPage */}
+      {searchResults && searchResults.length > 0 ? (
+        <table border="1" cellpadding="5" cellspacing="0" style={{ borderCollapse: 'collapse' }}>
           <thead>
             <tr>
-              <th>RS ID</th>
+              <th>ID</th>
+              <th>SNP Name</th>
               <th>Gene</th>
-              <th>Start Position</th>
-              <th>End Position</th>
+              <th>Location</th>
+              <th>P-Value</th>
             </tr>
           </thead>
           <tbody>
-            {snps.map((snp) => (
-              <tr key={snp.rs_id}>
-                <td>{snp.rs_id}</td>
-                <td>{snp.Gene}</td>
-                <td>{snp['Start Position']}</td>
-                <td>{snp['End Position']}</td>
+            {searchResults.map((snp) => (
+              <tr key={snp.id}>
+                <td>{snp.snp_name}</td>
+                <td>{snp.gene}</td>
               </tr>
             ))}
           </tbody>
         </table>
+      ) : (
+        <p>No search results found</p>
       )}
     </div>
   );
-};
+}
 
 export default SNPPage;
