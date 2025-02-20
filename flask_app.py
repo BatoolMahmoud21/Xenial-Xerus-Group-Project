@@ -49,6 +49,7 @@ def np():
                 'End Position': row[3]
 
             })
+        print(snps)
 
         return jsonify(snps)
 

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 import RoundedBoxes from './RoundedBoxes';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]); 
+  const [searchQuery, setSearchQuery] = useState(''); 
   const navigate = useNavigate();
 
   const handleSearch = (event) => {
@@ -17,7 +17,6 @@ function Home() {
    fetch(`/api/search?query=${searchQuery}`)
       .then((response) => response.json())
       .then((data) => {
-        setSearchResults(data);
          // Navigate to SNPPage and pass search results as state
         navigate('/snp-page', { state: { searchResults: data } });
       })
