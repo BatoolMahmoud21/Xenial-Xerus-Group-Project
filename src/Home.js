@@ -5,6 +5,7 @@ import RoundedBoxes from './RoundedBoxes';
 function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]); 
+  const navigate = useNavigate();
 
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
@@ -13,9 +14,13 @@ function Home() {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
 
-    fetch(`/api/search?query=${searchQuery}`) 
+   fetch(`/api/search?query=${searchQuery}`)
       .then((response) => response.json())
-      .then((data) => setSearchResults(data))
+      .then((data) => {
+        setSearchResults(data);
+         // Navigate to SNPPage and pass search results as state
+        navigate('/snp-page', { state: { searchResults: data } });
+      })
       .catch((error) => console.error('Error fetching data:', error));
   };
 
@@ -42,30 +47,6 @@ function Home() {
         <button type="submit">Search</button>
       </form>
 
-      {/* Display search results */}
-      {searchResults.length > 0 && (
-        <table border="1" cellpadding="5" cellspacing="0" style={{ borderCollapse: 'collapse' }}>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>SNP Name</th>
-              <th>Gene</th>
-              <th>Location</th>
-              <th>P-Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            {searchResults.map((snp) => (
-              <tr key={snp.id}>
-
-                <td>{snp.snp_name}</td>
-                <td>{snp.gene}</td>
-                
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
 
       <section className="home-main-image">
         <div className="heatmap">
