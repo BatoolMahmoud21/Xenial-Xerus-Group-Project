@@ -6,30 +6,36 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def welcome():
+    return "Welcome"
+
 @app.route('/api/search', methods=['GET'])
 def search_snp():
-
     search_query = request.args.get('query', '')
+    print(f"Searching for SNPs with query: {search_query}")
+    
+    if not search_query:
+        return jsonify({"error": "No query provided"}), 400
 
-    conn = sqlite3.connect('SNP_DATABASE.db')
-    cursor = conn.cursor()
+    try:
+        conn = sqlite3.connect('SNP_DATABASE.db')
+        cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM SNPS WHERE ID LIKE ? ",('%' + search_query + '%',) )
-    rows = cursor.fetchall()
-
-    conn.close()
+        print(f"Executing query to search for SNP: {search_query}")
+        cursor.execute("SELECT * FROM SNPS WHERE ID LIKE ?", ('%' + search_query + '%',))
+        rows = cursor.fetchall()
+        print(f"Rows found: {rows}")
+        conn.close()
+    except Exception as e:
+        print(f"Error occurred: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
     snps = []
     for row in rows:
         snps.append({
-            'id': row[0],  # Adjust this based on your table structure
-            'gene': row[1],      # Adjust this based on your table structure  # Adjust this based on your table structure
-            'p_value': row[4],   # Adjust this based on your table structure
+            'id': row[0],
+            'gene': row[1]
         })
 
-    
     return jsonify(snps)
-    # Return the HTML response
-
-if __name__ == '__main__':
-    app.run(debug=True)
