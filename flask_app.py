@@ -20,6 +20,10 @@ print(app.url_map)
 
 #Defining the tables 
 
+# Ensure tables are created before running the app
+with app.app_context():
+    db.create_all()
+
 # 1.GENES TABLE
 
 class Gene(db.Model):
