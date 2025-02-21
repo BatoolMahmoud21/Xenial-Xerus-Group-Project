@@ -1,13 +1,21 @@
 {
   "files": {
-    "main.css": "/Xenial-Xerus-Group-Project/static/css/main.aa684a75.css",
-    "main.js": "/Xenial-Xerus-Group-Project/static/js/main.14be033f.js",
+    "main.css": "/Xenial-Xerus-Group-Project/static/css/main.46b7ccff.css",
+    "main.js": "/Xenial-Xerus-Group-Project/static/js/main.e96d9f6d.js",
+    "static/media/TAJD pak-chr10-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD pak-chr10-2.1082819fe53dc0c4ef3f.png",
+    "static/media/TAJD bang-chr-8-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD bang-chr-8-2.19917635c328eb709a25.png",
+    "static/media/TAJD pak-chr3-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD pak-chr3-2.af86013f7c4d6c148645.png",
+    "static/media/TAJD pak-20-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD pak-20-2.d19126b13dea3de2e6bc.png",
+    "static/media/TAJD bang-chr-6-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD bang-chr-6-2.4a66817b79b660378672.png",
+    "static/media/TAJD pak-chr-13-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD pak-chr-13-2.a0739565f43edfe68973.png",
+    "static/media/TAJD bang-chr-11-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD bang-chr-11-2.93361808be7e4a5624c3.png",
+    "static/media/TAJD bang-chr10-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD bang-chr10-2.5b6c2ab26ce7daa071c6.png",
     "index.html": "/Xenial-Xerus-Group-Project/index.html",
-    "main.aa684a75.css.map": "/Xenial-Xerus-Group-Project/static/css/main.aa684a75.css.map",
-    "main.14be033f.js.map": "/Xenial-Xerus-Group-Project/static/js/main.14be033f.js.map"
+    "main.46b7ccff.css.map": "/Xenial-Xerus-Group-Project/static/css/main.46b7ccff.css.map",
+    "main.e96d9f6d.js.map": "/Xenial-Xerus-Group-Project/static/js/main.e96d9f6d.js.map"
   },
   "entrypoints": [
-    "static/css/main.aa684a75.css",
-    "static/js/main.14be033f.js"
+    "static/css/main.46b7ccff.css",
+    "static/js/main.e96d9f6d.js"
   ]
 }
