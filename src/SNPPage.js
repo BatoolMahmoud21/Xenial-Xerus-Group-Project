@@ -17,17 +17,23 @@ function SNPPage() {
             <tr>
               <th>RS ID</th>
               <th>Gene</th>
+              <th>Gene Name</th>
+              <th>Chromosome</th>
               <th>Start Position</th>
               <th>End Position</th>
+              <th>p Value</th>
             </tr>
           </thead>
           <tbody>
             {searchResults.map((snp, index) => (
               <tr key={index}>
-                <td>{snp.rs_id}</td>  {/* Display SNP RS ID */}
-                <td>{snp.Gene}</td>  {/* Display Gene Name */}
-                <td>{snp['Start Position']}</td>  {/* Display Start Position */}
-                <td>{snp['End Position']}</td>  {/* Display End Position */}
+                <td>{snp.rs_id}</td>  
+                <td>{snp.Gene}</td>
+                <td>{snp['Gene Name']}</td>
+                <td>{snp.Chromosome}</td>  
+                <td>{snp['Start Position']}</td>  
+                <td>{snp['End Position']}</td>
+                <td>{snp['p Value']}</td>  
               </tr>
             ))}
           </tbody>
