@@ -1,13 +1,13 @@
 
 import sqlite3
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify,
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def welcome():
+    return "Welcome"
  
 @app.route('/api/search', methods=['GET'])
 def np():
