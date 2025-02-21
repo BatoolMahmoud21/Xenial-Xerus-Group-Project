@@ -6,8 +6,8 @@ const RoundedBoxes = () => {
   return (
     <div className="container">
      
-      <Link to="/south-asia" className="box">SouthAsia</Link>
-      <Link to="/east-asia" className="box">EastAsia</Link>
+      <Link to="/south-asia" className="box">South Asia</Link>
+      <Link to="/east-asia" className="box">East Asia</Link>
     </div>
   );
 };
