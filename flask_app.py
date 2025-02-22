@@ -45,23 +45,23 @@ def np():
         params = []
 
         if search_query:
-            query += " AND SNPS.rs_id LIKE ?"
+            query += " AND SNPS.rs_id = ?"
             params.append('%' + search_query + '%')
 
         if gene_symbol:
-            query += " AND GENES.gene_symbol LIKE ?"
+            query += " AND GENES.gene_symbol = ?"
             params.append('%' + gene_symbol + '%')
 
         if chromosome:
-            query += " AND GENES.chromosome LIKE ?"
+            query += " AND GENES.chromosome = ?"
             params.append('%' + chromosome + '%')
 
         if start_pos:
-            query += " AND GENES.start_pos LIKE ?"
+            query += " AND GENES.start_pos = ?"
             params.append('%' + start_pos + '%')
 
         if end_pos:
-            query += " AND GENES.end_pos LIKE ?"
+            query += " AND GENES.end_pos = ?"
             params.append('%' + end_pos + '%')
 
         cursor.execute(query, params)
