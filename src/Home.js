@@ -70,7 +70,7 @@ function Home() {
           {/* Search by RS ID */}
           <input
             type="text"
-            placeholder="Search SNP by RS ID"
+            placeholder="Search SNP by rs ID"
             value={searchQuery}
             onChange={handleSearchQueryChange}
             style={{
