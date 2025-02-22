@@ -1,19 +1,24 @@
+//imports the libaries react and react-router-dom
+//imports APP.css - which contains the aesthetics for the home page
+//imports RoundedBoxes, another js file that contains the code for the two interactable bottons on the home page
+
 import React, { useState } from 'react';
 import './App.css';
 import { useNavigate } from 'react-router-dom';
 import RoundedBoxes from './RoundedBoxes';
 
 function Home() {
-  // State for each search parameter
+  // State for each search parameter - these variables hold information inputted by the user
   const [searchQuery, setSearchQuery] = useState('');
   const [geneSymbol, setGeneSymbol] = useState('');
   const [startPos, setStartPos] = useState('');
   const [endPos, setEndPos] = useState('');
   const [chromosome, setChromosome] = useState('');
-
+ 
+  //useNavigate was used to take the user to another page where the search results appears 
   const navigate = useNavigate();
 
-  // Update search query states
+  // Update search query states with what the user inputs 
   const handleSearchQueryChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -54,20 +59,22 @@ function Home() {
   };
 
   return (
+    //This codes the structure of the home page, with <h1> containing the name of the webpage and <h3> with group name - this entire section is called "App"
     <div className="App">
       <header>
         <h1>SNPs associated with Type 2 diabetes in Asian Populations</h1>
         <h3>Xenial Xerus</h3>
-      </header>
 
+      </header>
+      {/* Here is the description of the website */}
       <p>
         This website is an SNP browser website dedicated to highlighting SNPs associated with Type 2 diabetes in populations understudied,
         specifically Southern and Eastern Asia. This website includes gene ontology, SNP location, p-values for such associations as well as a number of summary statistics.
       </p>
-
+        {/* style - changes the aesthetics of the search bars to align them and format them correctly*/}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '20vh', flexDirection: 'column' }}>
         <form onSubmit={handleSearchSubmit} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '15px' }}>
-          {/* Search by RS ID */}
+          {/* Search by rs ID */}
           <input
             type="text"
             placeholder="Search SNP by rs ID"
@@ -142,15 +149,15 @@ function Home() {
           />
 
         
-
+            {/* This code here adds a search bar that initialises the search */}
           <button type="submit">Search</button>
         </form>
       </div>
 
-
+    {/* Inserts the roundboxes.js file here */}
       <RoundedBoxes />
 
-
+            {/* Added a new section with graphs and description of graphs */}
       <h2 className="section-heading">Graph Showing Type 2 Diabetes Prevalence in Different Ethnicities in the UK</h2>
 
       <section className="research-section">
