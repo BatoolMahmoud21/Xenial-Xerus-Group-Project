@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';  // Import useLocation
-
+//creates a function
 function SNPPage() {
   // Access the search results from location state
   const { state } = useLocation();
@@ -15,6 +15,7 @@ function SNPPage() {
         <table border="1" cellpadding="5" cellspacing="0" style={{ borderCollapse: 'collapse' }}>
           <thead>
             <tr>
+              {/* Column Head */}
               <th>rs ID</th>
               <th>Gene</th>
               <th>Gene Name</th>
@@ -27,6 +28,7 @@ function SNPPage() {
           <tbody>
             {searchResults.map((snp, index) => (
               <tr key={index}>
+                {/* loops through and displays them in individual table cells */}
                 <td>{snp.rs_id}</td>  
                 <td>{snp.Gene}</td>
                 <td>{snp['Gene Name']}</td>
