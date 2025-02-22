@@ -15,7 +15,7 @@ function SNPPage() {
         <table border="1" cellpadding="5" cellspacing="0" style={{ borderCollapse: 'collapse' }}>
           <thead>
             <tr>
-              <th>RS ID</th>
+              <th>rs ID</th>
               <th>Gene</th>
               <th>Gene Name</th>
               <th>Chromosome</th>
