@@ -1,6 +1,9 @@
+//imports the libraries needed
+
 import React from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
+//imports all the js files 
 
 import SouthAsia from './SouthAsia';  
 import EastAsia from './EastAsia';
@@ -13,7 +16,7 @@ function Main() {
     <Router>
       <div className="App">
         <Routes>
-          
+          {/*These routes define the paths needed to be taken when clicking on certain bottons on the webpage */}
           <Route path="/" element={<Home />} />
           <Route path="/snp-page" element={<SNPPage/>} />
           <Route path="/south-asia" element={<SouthAsia />} />
