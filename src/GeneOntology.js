@@ -1,4 +1,3 @@
-// GeneOntologyPage.js
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; // To access dynamic params from the URL
 
@@ -10,7 +9,8 @@ function GeneOntologyPage() {
     // Fetch gene ontology information from Flask API
     const fetchGeneInfo = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/gene-info?gene=${geneSymbol}`);
+        console.log('Fetching data for gene:', geneSymbol);
+        const response = await fetch(`/api/gene/gene-info/${geneSymbol}`);
         const data = await response.json();
         setGeneInfo(data);  // Store the received gene information
       } catch (error) {
@@ -26,21 +26,29 @@ function GeneOntologyPage() {
   }
 
   return (
-    <div>
-        <h1>Ontology Information for {geneSymbol}</h1>
-        {geneInfo.length === 0 ? (
-            <p>No ontology data found for this gene.</p>
+    <div className="p-8">
+      <h1 className="text-3xl font-bold mb-6">Ontology Information for {geneSymbol}</h1>
+      
+      <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+        <h2 className="text-xl font-semibold mb-2">Gene Information</h2>
+        <p><strong>Gene Name:</strong> {geneInfo.gene_name}</p>
+      </div>
+
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold">Ontology Terms</h2>
+        {geneInfo.ontology_terms && geneInfo.ontology_terms.length > 0 ? (
+          geneInfo.ontology_terms.map((term, index) => (
+            <div key={index} className="p-4 border rounded-lg mb-4">
+              <p className="mb-2"><strong>Term:</strong> {term.term_name}</p>
+              <p><strong>Description:</strong> {term.description}</p>
+            </div>
+          ))
         ) : (
-            geneInfo.map((ontology) => (
-                <div key={ontology.gene_symbol}>
-                    <p><strong>Gene Name:</strong> {ontology.gene_name}</p>
-                    <p><strong>Ontology Term:</strong> {ontology.term_name}</p>
-                    <p><strong>Description:</strong> {ontology.description}</p>
-                </div>
-            ))
+          <p>No ontology terms available for this gene.</p>
         )}
+      </div>
     </div>
-);
-};
+  );
+}
 
 export default GeneOntologyPage;
