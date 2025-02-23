@@ -10,6 +10,7 @@ import EastAsia from './EastAsia';
 import Home from './Home';  
 import SummaryStatistics from './SummaryStatistics'; 
 import SNPPage from './SNPPage';
+import GeneOntologyPage from './GeneOntologyPage';
 
 function Main() {
   return (
@@ -22,6 +23,7 @@ function Main() {
           <Route path="/south-asia" element={<SouthAsia />} />
           <Route path="/east-asia" element={<EastAsia />} />
           <Route path="/summary" element={<SummaryStatistics />} />
+          <Route path="/gene/:geneSymbol" element={<GeneOntologyPage/>} />
         </Routes>
       </div>
     </Router>
