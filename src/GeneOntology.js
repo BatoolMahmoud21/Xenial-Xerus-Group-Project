@@ -26,15 +26,21 @@ function GeneOntologyPage() {
   }
 
   return (
-    <div className="GeneOntologyPage">
-      <h1>Gene Ontology Information for {geneSymbol}</h1>
-      {/* Render gene information here */}
-      <p><strong>Gene Name:</strong> {geneInfo.gene_name}</p>
-      <p><strong>Term Name:</strong> {geneInfo.term_name}</p>
-      <p><strong>Description:</strong> {geneInfo.description}</p>
-      {/* Add any other relevant information */}
+    <div>
+        <h1>Ontology Information for {geneSymbol}</h1>
+        {geneInfo.length === 0 ? (
+            <p>No ontology data found for this gene.</p>
+        ) : (
+            geneInfo.map((ontology) => (
+                <div key={ontology.gene_symbol}>
+                    <p><strong>Gene Name:</strong> {ontology.gene_name}</p>
+                    <p><strong>Ontology Term:</strong> {ontology.term_name}</p>
+                    <p><strong>Description:</strong> {ontology.description}</p>
+                </div>
+            ))
+        )}
     </div>
-  );
-}
+);
+};
 
 export default GeneOntologyPage;
