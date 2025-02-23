@@ -104,6 +104,59 @@ def np():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route('/api/gene/gene-info/<gene_symbol>', methods=['GET'])
+def get_gene_info(gene_symbol):
+    try:
+        conn = sqlite3.connect('SNP_DATABASE.db')
+        cursor = conn.cursor()
+
+        # First get the gene name since it will be the same for all entries
+        gene_name_query = """
+            SELECT DISTINCT gene_name
+            FROM GENES
+            WHERE gene_symbol = ?
+        """
+        cursor.execute(gene_name_query, (gene_symbol,))
+        gene_name = cursor.fetchone()[0]
+
+        # Then get the unique ontology terms and descriptions
+        query = """
+            SELECT DISTINCT
+                ONTOLOGY_TERMS.term_name,
+                ONTOLOGY_TERMS.description
+            FROM GENES
+            JOIN GENE_ONTOLOGY ON GENES.gene_id = GENE_ONTOLOGY.gene_id
+            JOIN ONTOLOGY_TERMS ON GENE_ONTOLOGY.ontology_id = ONTOLOGY_TERMS.ontology_id
+            WHERE GENES.gene_symbol = ?
+        """
+
+        cursor.execute(query, (gene_symbol,))
+        rows = cursor.fetchall()
+        conn.close()
+
+        if not rows:
+            return jsonify({"error": "No data was found"}), 404
+
+        # Return structured data with one gene name and multiple ontology terms
+        response_data = {
+            "gene_name": gene_name,
+            "ontology_terms": [
+                {
+                    "term_name": row[0],
+                    "description": row[1]
+                }
+                for row in rows
+            ]
+        }
+            
+        return jsonify(response_data)
+
+    except Exception as e:
+        print(f"Error in get_gene_info: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+
+
 #Starts the server 
 if __name__ == '__main__':
     app.run(debug=True)
