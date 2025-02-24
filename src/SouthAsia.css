@@ -13,13 +13,13 @@ body {
 .SouthAsia {
   display: flex;
   flex-direction: column;
+  min-height: 100vh; /* Ensures it takes the full height of the viewport */
   align-items: center;
   justify-content: flex-start;
   width: 100%;
   background-color: transparent;
   flex-grow: 1;  /* Ensures the content grows and pushes footer down */
   padding-top: 120px;  /* Ensure content doesn't overlap the fixed header */
-  padding-bottom: 50px;  /* Provides extra space for the footer */
   overflow-x: hidden;  /* To avoid horizontal scrollbars */
   margin: 0;  /* Remove any margins from the container */
 }
