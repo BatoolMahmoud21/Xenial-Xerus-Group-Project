@@ -19,6 +19,7 @@ def np():
     start_pos = request.args.get('start_pos', '')  # Start Position
     end_pos = request.args.get('end_pos', '')  # End Position
     chromosome = request.args.get('chromosome', '')  # Chromosome
+    population_name = request.args.get('population_name', '')
     
     print(f"Searching for SNPs with query: {search_query}, gene symbol: {gene_symbol}, "
           f"start position: {start_pos}, end position: {end_pos}, and chromosome: {chromosome}") #prints this in the terminal. This was used to check if the request was received by Flask
@@ -43,10 +44,13 @@ def np():
                 GENES.chromosome,
                 GENES.start_pos,
                 GENES.end_pos,
-                POPULATION_SNP.p_value 
+                POPULATION_SNP.p_value,
+                POPULATION.population_name
+ 
             FROM SNPS 
             JOIN GENES ON SNPS.gene_id = GENES.gene_id
             JOIN POPULATION_SNP ON SNPS.rs_id = POPULATION_SNP.rs_id
+            JOIN POPULATION ON POPULATION_SNP.population_id = POPULATION.population_id
             WHERE 1=1
         """  
 
@@ -73,6 +77,10 @@ def np():
             query += " AND GENES.end_pos = ?"
             params.append(end_pos)
 
+        if population_name:
+            query += " AND POPULATION.population_name = ?"
+            params.append(population_name)
+
         cursor.execute(query, params) #executes the query
         rows = cursor.fetchall()
 
@@ -92,7 +100,8 @@ def np():
                 'Chromosome': row[3],
                 'Start Position': row[4],
                 'End Position': row[5],
-                'p Value': row[6]
+                'p Value': row[6],
+                'Population': row[7]
             })
 
         print(snps) #prints the snps on command line to double check if the table and results were gathered and formatted correctly
@@ -154,6 +163,53 @@ def get_gene_info(gene_symbol):
     except Exception as e:
         print(f"Error in get_gene_info: {str(e)}")
         return jsonify({"error": str(e)}), 500
+
+
+
+@app.route('/api/gene/population-info/<population_name>/<rs_id>', methods=['GET'])
+def get_population_info(population_name, rs_id):
+
+    try:
+        conn = sqlite3.connect('SNP_DATABASE.db')
+        cursor = conn.cursor()
+
+        print(f"Connected")
+
+        query_population = """
+            SELECT
+                POPULATION_SNP.rs_id,
+                POPULATION.region,
+                POPULATION_SNP.specific_region,
+                POPULATION_SNP.num_participants,
+                POPULATION_SNP.gender
+            FROM POPULATION_SNP
+            JOIN POPULATION ON POPULATION_SNP.population_id = POPULATION.population_id
+            WHERE POPULATION.population_name = ? AND POPULATION_SNP.rs_id = ?
+        """
+        cursor.execute(query_population, (population_name,rs_id))
+        rows = cursor.fetchall()
+        conn.close()
+
+        if not rows:
+            return jsonify({"error": "No data was found"}), 404
+
+        population_info = [] 
+        for row in rows:
+            population_info.append({
+                'rs_id': row[0],
+                'Region': row[1],
+                'Specific Region': row[2],
+                'Participants': row[3],
+                'Gender': row[4]
+                
+            })
+        print(population_info)
+        return jsonify(population_info)
+    
+    except Exception as e:
+        print(f"Error in get_population_info: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
 
 
 
