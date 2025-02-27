@@ -72,25 +72,59 @@ function SouthAsia() {
           {/* Tajima D Summary Statistic */}
           <div className="country-stats">
             <h3>Tajima D Summary Statistic</h3>
-            {[BangChr6, BangChr8, BangChr10, BangChr10_2, BangChr11].map((image, index) => (
-              <div className="image-container" key={index}>
-                <img src={image} alt={`Bangladesh Chromosome ${index + 1}`} className="summary-image" onClick={() => openModal(image)} />
-                <button className="download-button" onClick={() => downloadImage(image, `Bangladesh-Chr${index + 1}.png`)}>Download Image</button>
+            
+            <div className="image-container">
+              <img src={BangChr6} alt="Bangladesh Chromosome 6" className="summary-image" onClick={() => openModal(BangChr6)} /> 
+              <div>
+                <button className="download-button" onClick={() => downloadImage(BangChr6, "Bangladesh-Chr6.png")}>Download Image</button>
+                <button className="download-button" onClick={() => downloadFile('chr6BEB.2.txt')}>Download TextFile</button>
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* EHH Summary Statistics */}
-          <div className="country-stats">
-            <h3>EHH Summary Statistics</h3>
-            {[BangSNPrs7756992, BangSNPrs13266634, BangSNPrs1111875, BangSNPrs7903146, BangSNPrs12255372, BangSNPrs5219].map((image, index) => (
-              <div className="image-container" key={index}>
-                <img src={image} alt={`Bangladesh SNP Chromosome ${index + 1}`} className="summary-image" onClick={() => openModal(image)} />
-                <button className="download-button" onClick={() => downloadImage(image, `Bangladesh-SNP-Chr${index + 1}.png`)}>Download Image</button>
+            <div className="image-container">
+              <img src={BangChr10} alt="Bangladesh Chromosome 10" className="summary-image" onClick={() => openModal(BangChr10)} />
+              <div>
+                <button className="download-button" onClick={() => downloadImage(BangChr10, "Bangladesh-Chr10.png")}>Download Image</button>
+                <button className="download-button" onClick={() => downloadFile('chr10BEB.2.txt')}>Download TextFile</button>
               </div>
-            ))}
+            </div>
+
+            <div className="image-container">
+              <img src={BangChr8} alt="Bangladesh Chromosome 8" className="summary-image" onClick={() => openModal(BangChr8)} />
+              <div>
+                <button className="download-button" onClick={() => downloadImage(BangChr8, "Bangladesh-Chr8.png")}>Download Image</button>
+                <button className="download-button" onClick={() => downloadFile('chr8BEB.2.txt')}>Download TextFile</button>
+              </div>
+            </div>
+
+            <div className="image-container">
+              <img src={BangChr10_2} alt="Bangladesh Chromosome 10.2" className="summary-image" onClick={() => openModal(BangChr10_2)} />
+              <div>
+                <button className="download-button" onClick={() => downloadImage(BangChr10_2, "Bangladesh-Chr10_2.png")}>Download Image</button>
+                <button className="download-button" onClick={() => downloadFile('chr10BEB.2.1.txt')}>Download TextFile</button>
+              </div>
+            </div>
+
+            <div className="image-container">
+              <img src={BangChr11} alt="Bangladesh Chromosome 11" className="summary-image" onClick={() => openModal(BangChr11)} />
+              <div>
+                <button className="download-button" onClick={() => downloadImage(BangChr11, "Bangladesh-Chr11.png")}>Download Image</button>
+                <button className="download-button" onClick={() => downloadFile('chr11BEB.2.txt')}>Download TextFile</button>
+              </div>
+            </div>
           </div>
-        </section>
+        </section> {/* Closing Bangladesh Section */}
+
+        {/* Bangladesh EHH Summary Statistics */}
+        <div className="country-stats">
+          <h3>EHH Summary Statistics</h3>
+          {[BangSNPrs7756992, BangSNPrs13266634, BangSNPrs1111875, BangSNPrs7903146, BangSNPrs12255372, BangSNPrs5219].map((image, index) => (
+            <div className="image-container" key={index}>
+              <img src={image} alt={`Bangladesh SNP Chromosome ${index + 1}`} className="summary-image" onClick={() => openModal(image)} />
+              <button className="download-button" onClick={() => downloadImage(image, `Bangladesh-SNP-Chr${index + 1}.png`)}>Download Image</button>
+            </div>
+          ))}
+        </div> {/* Closing Bangladesh EHH Summary Statistics */}
 
         {/* Pakistan Section */}
         <section>
@@ -99,13 +133,40 @@ function SouthAsia() {
           {/* Tajima D Summary Statistic */}
           <div className="country-stats">
             <h3>Tajima D Summary Statistic</h3>
-            {[PakChr3, PakChr10, PakChr13, PakChr20].map((image, index) => (
-              <div className="image-container" key={index}>
-                <img src={image} alt={`Pakistan Chromosome ${index + 1}`} className="summary-image" onClick={() => openModal(image)} />
-                <button className="download-button" onClick={() => downloadImage(image, `Pakistan-Chr${index + 1}.png`)}>Download Image</button>
+            
+            {/* For each Pakistan image, include a download button for the corresponding .txt file */}
+            <div className="image-container">
+              <img src={PakChr3} alt="Pakistan Chromosome 3" className="summary-image" onClick={() => openModal(PakChr3)} />
+              <div>
+                <button className="download-button" onClick={() => downloadImage(PakChr3, "Pakistan-Chr3.png")}>Download Image</button>
+                <button className="download-button" onClick={() => downloadFile('chr3PJL.2-tajd.txt')}>Download TextFile</button>
               </div>
-            ))}
-          </div>
+            </div>
+
+            <div className="image-container">
+              <img src={PakChr10} alt="Pakistan Chromosome 10" className="summary-image" onClick={() => openModal(PakChr10)} />
+              <div>
+                <button className="download-button" onClick={() => downloadImage(PakChr10, "Pakistan-Chr10.png")}>Download Image</button>
+                <button className="download-button" onClick={() => downloadFile('chr10PJL.2-tajd.txt')}>Download TextFile</button>
+              </div>
+            </div>
+
+            <div className="image-container">
+              <img src={PakChr13} alt="Pakistan Chromosome 13" className="summary-image" onClick={() => openModal(PakChr13)} />
+              <div>
+                <button className="download-button" onClick={() => downloadImage(PakChr13, "Pakistan-Chr13.png")}>Download Image</button>
+                <button className="download-button" onClick={() => downloadFile('chr13PJL.2-tajd.txt')}>Download TextFile</button>
+              </div>
+            </div>
+
+            <div className="image-container">
+              <img src={PakChr20} alt="Pakistan Chromosome 20" className="summary-image" onClick={() => openModal(PakChr20)} />
+              <div>
+                <button className="download-button" onClick={() => downloadImage(PakChr20, "Pakistan-Chr20.png")}>Download Image</button>
+                <button className="download-button" onClick={() => downloadFile('chr20PJL.2-tajd.txt')}>Download TextFile</button>
+              </div>
+            </div>
+          </div> {/* Closing Pakistan Section */}
 
           {/* EHH Summary Statistics */}
           <div className="country-stats">
@@ -116,16 +177,8 @@ function SouthAsia() {
                 <button className="download-button" onClick={() => downloadImage(image, `Pakistan-SNP-Chr${index + 1}.png`)}>Download Image</button>
               </div>
             ))}
-          </div>
-          
-          {/* Download buttons for .txt files */}
-          <div className="download-text-files">
-            <button onClick={() => downloadFile('chr3PJL.2-tajd.txt')}>Download chr3PJL.2-tajd.txt</button>
-            <button onClick={() => downloadFile('chr10PJL.2-tajd.txt')}>Download chr10PJL.2-tajd.txt</button>
-            <button onClick={() => downloadFile('chr13PJL.2-tajd.txt')}>Download chr13PJL.2-tajd.txt</button>
-            <button onClick={() => downloadFile('chr20PJL.2-tajd.txt')}>Download chr20PJL.2-tajd.txt</button>
-          </div>
-        </section>
+          </div> {/* Closing EHH Summary Statistics */}
+        </section> {/* Closing Pakistan Section */}
       </div>
 
       {/* Modal for displaying enlarged image */}
