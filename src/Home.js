@@ -7,12 +7,6 @@ import './App.css';
 import { useNavigate } from 'react-router-dom';
 import RoundedBoxes from './RoundedBoxes';
 
-
-import React, { useState } from 'react';
-import './App.css';
-import { useNavigate } from 'react-router-dom';
-import RoundedBoxes from './RoundedBoxes';
-
 function Home() {
   // Single state for the combined search query
   const [searchQuery, setSearchQuery] = useState('');
