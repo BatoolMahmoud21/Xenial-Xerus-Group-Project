@@ -1,21 +1,32 @@
 {
   "files": {
-    "main.css": "/Xenial-Xerus-Group-Project/static/css/main.9be58b88.css",
-    "main.js": "/Xenial-Xerus-Group-Project/static/js/main.4b0e8393.js",
-    "static/media/TAJD pak-chr10-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD pak-chr10-2.1082819fe53dc0c4ef3f.png",
-    "static/media/TAJD bang-chr-8-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD bang-chr-8-2.19917635c328eb709a25.png",
-    "static/media/TAJD pak-chr3-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD pak-chr3-2.af86013f7c4d6c148645.png",
-    "static/media/TAJD pak-20-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD pak-20-2.d19126b13dea3de2e6bc.png",
-    "static/media/TAJD bang-chr-6-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD bang-chr-6-2.4a66817b79b660378672.png",
-    "static/media/TAJD pak-chr-13-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD pak-chr-13-2.a0739565f43edfe68973.png",
-    "static/media/TAJD bang-chr-11-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD bang-chr-11-2.93361808be7e4a5624c3.png",
-    "static/media/TAJD bang-chr10-2.png": "/Xenial-Xerus-Group-Project/static/media/TAJD bang-chr10-2.5b6c2ab26ce7daa071c6.png",
+    "main.css": "/Xenial-Xerus-Group-Project/static/css/main.a65f9f76.css",
+    "main.js": "/Xenial-Xerus-Group-Project/static/js/main.ba79a58f.js",
+    "static/media/Bangladesh-chr8.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-chr8.83446d5d0e612d6c1057.png",
+    "static/media/Bangladesh-chr11.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-chr11.011e21517953df57fe77.png",
+    "static/media/Bangladesh-chr10.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-chr10.d53abe5ba6d9d90a2bd8.png",
+    "static/media/Pakistan-chr3.png": "/Xenial-Xerus-Group-Project/static/media/Pakistan-chr3.1784c274035ed2953885.png",
+    "static/media/Pakistan-chr10.png": "/Xenial-Xerus-Group-Project/static/media/Pakistan-chr10.80c0dd504e953f60ec6f.png",
+    "static/media/Pakistan-chr13.png": "/Xenial-Xerus-Group-Project/static/media/Pakistan-chr13.bb62fb75d19eaf9fb4f9.png",
+    "static/media/Pakistan-chr20.png": "/Xenial-Xerus-Group-Project/static/media/Pakistan-chr20.4d0497b6597b6e6a673f.png",
+    "static/media/Bangladesh-chr6.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-chr6.bd97f9c4c612f85b1044.png",
+    "static/media/Bangladesh-chr10.2.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-chr10.2.69dcea52c1d7e44e91a6.png",
+    "static/media/Pakistan-SNPrs1805097-chr13.png": "/Xenial-Xerus-Group-Project/static/media/Pakistan-SNPrs1805097-chr13.4ebe179cb29a8f5337df.png",
+    "static/media/Pakistan-SNPrs7903146-chr10.png": "/Xenial-Xerus-Group-Project/static/media/Pakistan-SNPrs7903146-chr10.8aa8d7e9bd9d46f3c9ff.png",
+    "static/media/Bangladesh-SNPrs13266634-chr8.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-SNPrs13266634-chr8.45f074f7bd5b73ba95c0.png",
+    "static/media/Bangladesh-SNPrs12255372-chr10.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-SNPrs12255372-chr10.da21b8a84a52625c252c.png",
+    "static/media/Pakistan-SNPrs2241766-chr3.png": "/Xenial-Xerus-Group-Project/static/media/Pakistan-SNPrs2241766-chr3.89aecd354bc20c2f921b.png",
+    "static/media/Pakistan-SNPrs2241766-chr20.png": "/Xenial-Xerus-Group-Project/static/media/Pakistan-SNPrs2241766-chr20.51ea691bc32dbc4b410c.png",
+    "static/media/Bangladesh-SNPrs1111875-chr10.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-SNPrs1111875-chr10.1d599bff5a0e8d4bbd04.png",
+    "static/media/Bangladesh-SNPrs7903146-chr10.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-SNPrs7903146-chr10.a1af5ef98d3bce774f31.png",
+    "static/media/Bangladesh-SNPrs5219-chr11.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-SNPrs5219-chr11.7b7ecbc3336966ef4383.png",
+    "static/media/Bangladesh-SNPrs7756992-chr6.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-SNPrs7756992-chr6.4e0041edfea6b7d99b26.png",
     "index.html": "/Xenial-Xerus-Group-Project/index.html",
-    "main.9be58b88.css.map": "/Xenial-Xerus-Group-Project/static/css/main.9be58b88.css.map",
-    "main.4b0e8393.js.map": "/Xenial-Xerus-Group-Project/static/js/main.4b0e8393.js.map"
+    "main.a65f9f76.css.map": "/Xenial-Xerus-Group-Project/static/css/main.a65f9f76.css.map",
+    "main.ba79a58f.js.map": "/Xenial-Xerus-Group-Project/static/js/main.ba79a58f.js.map"
   },
   "entrypoints": [
-    "static/css/main.9be58b88.css",
-    "static/js/main.4b0e8393.js"
+    "static/css/main.a65f9f76.css",
+    "static/js/main.ba79a58f.js"
   ]
 }
