@@ -5,27 +5,84 @@ function EastAsia() {
   return (
     <div className="EastAsia">
       <header className="page-header">
-        <button className="home-button" onClick={() => alert('Home clicked')}>
-          Home
-        </button>
-        <h1 className="header">East Asian Populations</h1>
+        <button className="home-button" onClick={() => alert('Home clicked')}>Home</button>
+        <h1 className="header">Summary Statistics - East Asia</h1>
       </header>
 
-      <div className="country-list">
-        <h2>China (Han Chinese Population)</h2>
-        <p>Genetic studies have identified several key single nucleotide polymorphisms (SNPs) associated with an increased risk of T2D in the **Han Chinese** population. Notably, the following SNPs have been shown to influence the risk of developing Type 2 diabetes:</p>
+      <div className="stats-list">
+        {/* China Section */}
+        <section>
+          <h2>China</h2>
+          <p>
+            <strong>Genome-wide association study in a Chinese population identifies a susceptibility locus for type 2 diabetes at 7q32 near PAX4</strong> – 
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3648687/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+              Read the study
+            </a>
+          </p>
+          <p>This study identifies genetic variants associated with type 2 diabetes (T2D) in the Han Chinese population.</p>
 
-        <h2>Japan</h2>
-        <p>
-          Several SNPs have been identified in the Japanese population that are associated with Type 2 diabetes risk:
-        </p>
+          <h3>Key Findings</h3>
+          <table className="stats-table">
+            <thead>
+              <tr>
+                <th>SNP</th>
+                <th>Chromosome</th>
+                <th>Gene</th>
+                <th>Odds Ratio (OR)</th>
+                <th>P-Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>rs10229583</td>
+                <td>7q32</td>
+                <td>PAX4</td>
+                <td>1.18 (1.11, 1.25)</td>
+                <td>2.6 × 10⁻⁸</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><strong>Note:</strong> The study does not include positive selection metrics.</p>
+        </section>
 
-        <h2>South Korea</h2>
-        <p>
-          Several SNPs have been identified in the South Korean population that are associated with Type 2 diabetes risk:
-        </p>
+        {/* Japan Section */}
+        <section>
+          <h2>Japan</h2>
+          <p>
+            <strong>Genome-Wide Association Studies in the Japanese Population Identify Seven Novel Loci for Type 2 Diabetes</strong> – 
+            <a href="https://www.nature.com/articles/ncomms10531" target="_blank" rel="noopener noreferrer">
+              Read the study
+            </a>
+          </p>
+          <p>The study conducted a GWAS and identified seven loci significantly associated with T2D.</p>
 
+          <h3>Key Findings</h3>
+          <table className="stats-table">
+            <thead>
+              <tr>
+                <th>Loci Identified</th>
+                <th>Risk Allele Frequency (RAF)</th>
+                <th>Odds Ratio (OR)</th>
+                <th>P-Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>7</td>
+                <td>0.099 - 0.947</td>
+                <td>1.09 - 1.19</td>
+                <td>P &lt; 5 × 10⁻⁸</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><strong>Note:</strong> The study does not provide selection statistics like Fst, Tajima’s D, or iHS.</p>
+        </section>
       </div>
+
+      <footer>
+        <p>Summary Statistics for East Asia</p>
+        <p className="footer-group-name">© 2025 Xenial Xerus. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
