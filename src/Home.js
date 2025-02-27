@@ -7,45 +7,30 @@ import './App.css';
 import { useNavigate } from 'react-router-dom';
 import RoundedBoxes from './RoundedBoxes';
 
+
+import React, { useState } from 'react';
+import './App.css';
+import { useNavigate } from 'react-router-dom';
+import RoundedBoxes from './RoundedBoxes';
+
 function Home() {
-  // State for each search parameter - these variables hold information inputted by the user
+  // Single state for the combined search query
   const [searchQuery, setSearchQuery] = useState('');
-  const [geneSymbol, setGeneSymbol] = useState('');
-  const [startPos, setStartPos] = useState('');
-  const [endPos, setEndPos] = useState('');
-  const [chromosome, setChromosome] = useState('');
  
-  //useNavigate was used to take the user to another page where the search results appears 
   const navigate = useNavigate();
 
-  // Update search query states with what the user inputs 
+  // Update search query state
   const handleSearchQueryChange = (event) => {
     setSearchQuery(event.target.value);
-  };
-  const handleGeneChange = (event) => {
-    setGeneSymbol(event.target.value);
-  };
-  const handleStartPosChange = (event) => {
-    setStartPos(event.target.value);
-  };
-  const handleEndPosChange = (event) => {
-    setEndPos(event.target.value);
-  };
-  const handleChromosomeChange = (event) => {
-    setChromosome(event.target.value);
   };
 
   // Handle form submission to call the API and pass the results
   const handleSearchSubmit = (event) => {
     event.preventDefault();
 
-    // Dynamically construct the query string based on available input fields
+    // Send the combined search query to the Flask API
     const queryParams = new URLSearchParams({
-      query: searchQuery,
-      gene: geneSymbol,
-      start_pos: startPos,
-      end_pos: endPos,
-      chromosome: chromosome,
+      query: searchQuery,  // Single search query
     }).toString();
 
     // Fetch the data from the Flask API
@@ -59,97 +44,32 @@ function Home() {
   };
 
   return (
-    //This codes the structure of the home page, with <h1> containing the name of the webpage and <h3> with group name - this entire section is called "App"
     <div className="App">
       <header>
         <h1>SNPs associated with Type 2 diabetes in Asian Populations</h1>
         <h3>Xenial Xerus</h3>
-
       </header>
-      {/* Here is the description of the website */}
       <p>
         This website is an SNP browser website dedicated to highlighting SNPs associated with Type 2 diabetes in populations understudied,
-        specifically Southern and Eastern Asia. This website includes gene ontology, SNP location, p-values for such associations as well as a number of summary statistics.
+        specifically Southern and Eastern Asia.
       </p>
-        {/* style - changes the aesthetics of the search bars to align them and format them correctly*/}
+
+      {/* Unified search bar */}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '20vh', flexDirection: 'column' }}>
-        <form onSubmit={handleSearchSubmit} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '15px' }}>
-          {/* Search by rs ID */}
+        <form onSubmit={handleSearchSubmit} style={{ display: 'flex', justifyContent: 'center' }}>
           <input
             type="text"
-            placeholder="Search SNP by rs ID"
+            placeholder="Search by either rs ID, Gene Symbol, Chromosome, Start Position or End Position"
             value={searchQuery}
             onChange={handleSearchQueryChange}
             style={{
               padding: '12px 20px',
               fontSize: '16px',
-              width: '250px',
+              width: '700px',
               borderRadius: '4px',
               border: '1px solid #ccc',
             }}
           />
-
-          {/* Search by Gene Symbol */}
-          <input
-            type="text"
-            placeholder="Search by Gene Symbol"
-            value={geneSymbol}
-            onChange={handleGeneChange}
-            style={{
-              padding: '12px 20px',
-              fontSize: '16px',
-              width: '250px',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-            }}
-          />
-          {/* Search by Chromosome */}
-          <input
-            type="text"
-            placeholder="Chromosome"
-            value={chromosome}
-            onChange={handleChromosomeChange}
-            style={{
-              padding: '12px 20px',
-              fontSize: '16px',
-              width: '250px',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-            }}
-          />
-
-          {/* Search by Start Position */}
-          <input
-            type="text"
-            placeholder="Start Position"
-            value={startPos}
-            onChange={handleStartPosChange}
-            style={{
-              padding: '12px 20px',
-              fontSize: '16px',
-              width: '250px',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-            }}
-          />
-
-          {/* Search by End Position */}
-          <input
-            type="text"
-            placeholder="End Position"
-            value={endPos}
-            onChange={handleEndPosChange}
-            style={{
-              padding: '12px 20px',
-              fontSize: '16px',
-              width: '250px',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-            }}
-          />
-
-        
-            {/* This code here adds a search bar that initialises the search */}
           <button type="submit">Search</button>
         </form>
       </div>
