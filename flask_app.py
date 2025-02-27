@@ -1,42 +1,70 @@
 #Import all required modules/libraries
 
-import sqlite3
 from flask import Flask, request, jsonify
+import sqlite3
+import re
 
-#initialises the app
 app = Flask(__name__)
 
-#prints welcome in the root URL
-@app.route('/')
-def welcome():
-    return "Welcome"
-
-#sets up the search 
 @app.route('/api/search', methods=['GET'])
-def np():
-    search_query = request.args.get('query', '')  # rs ID
-    gene_symbol = request.args.get('gene', '')  # Gene Name
-    start_pos = request.args.get('start_pos', '')  # Start Position
-    end_pos = request.args.get('end_pos', '')  # End Position
-    chromosome = request.args.get('chromosome', '')  # Chromosome
-    population_name = request.args.get('population_name', '')
+def search():
+    search_query = request.args.get('query', '').strip()  
     
-    print(f"Searching for SNPs with query: {search_query}, gene symbol: {gene_symbol}, "
-          f"start position: {start_pos}, end position: {end_pos}, and chromosome: {chromosome}") #prints this in the terminal. This was used to check if the request was received by Flask
-    
-    if not search_query and not gene_symbol and not start_pos and not end_pos and not chromosome:
-        return jsonify({"error": "No search criteria provided"}), 400 #Error prints if the fields are not given at all it will print this on the actual website, hence return jsonify
+    print(f"Received search query: {search_query}")
+
+    if not search_query:
+        return jsonify({"error": "No search criteria provided"}), 400
 
     try:
-        conn = sqlite3.connect('SNP_DATABASE.db') # this is used to connect Flask to our SNP Database 
-        cursor = conn.cursor() # cursor is able to interact with the actual SQL database - executing and fetching data
+        conn = sqlite3.connect('SNP_DATABASE.db')
+        cursor = conn.cursor()
 
-        print(f"Executing query to search for SNPs.") # prints this in the terminal to let us know that flask correctly connect to our database
+        # Determine query type based on patterns
+        is_rs_id = re.match(r'^rs\d+$', search_query) is not None
+        is_numeric = search_query.replace(',', '').isdigit()
+
+        clean_search = search_query.replace(',', '') if is_numeric else search_query
         
+        # Get more information about the database to debug
+        cursor.execute("PRAGMA table_info(GENES)")
+        genes_columns = cursor.fetchall()
+        print("GENES table columns:", genes_columns)
+        
+        # Check if there's any data for debugging
+        cursor.execute("SELECT COUNT(*) FROM GENES")
+        genes_count = cursor.fetchone()[0]
+        print(f"Found {genes_count} records in GENES table")
+        
+        # Build the WHERE clause based on the query type
+        where_clause = ""
+        params = []
+        
+        if is_rs_id:
+            # Exact match for rs IDs
+            where_clause = "SNPS.rs_id = ?"
+            params = [search_query]
+        elif is_numeric:
+            # For numeric values, we'll use multiple clauses with CAST to ensure type matching
+            # Make sure to format this based on your actual column data types
+            where_clause = """
+                GENES.chromosome = ? OR 
+                CAST(GENES.start_pos AS TEXT) = ? OR 
+                CAST(GENES.end_pos AS TEXT) = ? OR
+                SNPS.rs_id = ?
+            """
+            params = [search_query, search_query, search_query, f"rs%{search_query}%"]
+            
+            # Add a debug query to check if there are actually any matching positions
+            debug_query = "SELECT COUNT(*) FROM GENES WHERE CAST(start_pos AS TEXT) = ? OR CAST(end_pos AS TEXT) = ?"
+            cursor.execute(debug_query, [search_query, search_query])
+            position_matches = cursor.fetchone()[0]
+            print(f"Found {position_matches} position matches for '{search_query}'")
+        else:
+            # For text queries (like gene symbols), use partial matching
+            where_clause = "GENES.gene_symbol LIKE ?"
+            params = [f"%{search_query}%"]
 
-        #This is our query - [Table_Name].[Column_Name] - we want data from our columns in the data base that contain rs id, gene symbol, chromosome, p value and chromosome start and end position
-        #Because this data is across 3 tables we must specify which tables and how they connect with eachother
-        query = """ 
+        query = f""" 
             SELECT 
                 SNPS.rs_id,
                 GENES.gene_symbol,
@@ -46,52 +74,27 @@ def np():
                 GENES.end_pos,
                 POPULATION_SNP.p_value,
                 POPULATION.population_name
- 
             FROM SNPS 
             JOIN GENES ON SNPS.gene_id = GENES.gene_id
             JOIN POPULATION_SNP ON SNPS.rs_id = POPULATION_SNP.rs_id
             JOIN POPULATION ON POPULATION_SNP.population_id = POPULATION.population_id
-            WHERE 1=1
-        """  
+            WHERE {where_clause}
+        """
 
-        params = [] #list that will hold the values that are used as parameters for the search query, e.g. rs id, chromosome etc 
-
-        # using = instead of LIKE ensures that the query exactly matches and not just get values that contain those queries
-        if search_query:
-            query += " AND SNPS.rs_id = ?"
-            params.append(search_query)
-
-        if gene_symbol:
-            query += " AND GENES.gene_symbol = ?"
-            params.append(gene_symbol)
-
-        if chromosome:
-            query += " AND GENES.chromosome = ?"
-            params.append(chromosome)
-
-        if start_pos:
-            query += " AND GENES.start_pos = ?"
-            params.append(start_pos)
-
-        if end_pos:
-            query += " AND GENES.end_pos = ?"
-            params.append(end_pos)
-
-        if population_name:
-            query += " AND POPULATION.population_name = ?"
-            params.append(population_name)
-
-        cursor.execute(query, params) #executes the query
+        print("Executing query:", query)
+        print("With parameters:", params)
+        
+        cursor.execute(query, params)
         rows = cursor.fetchall()
+        
+        print(f"Query returned {len(rows)} results")
 
-        conn.close() #closes the connection
+        conn.close()
 
-        #if there are no results, prints this on the website
         if not rows:
-            return jsonify({"error": "No SNPs found matching the criteria"}), 404 
+            return jsonify({"error": "No SNPs found matching the criteria"}), 404
 
-        #stores the results in an array
-        snps = [] 
+        snps = []
         for row in rows:
             snps.append({
                 'rs_id': row[0],
@@ -104,12 +107,57 @@ def np():
                 'Population': row[7]
             })
 
-        print(snps) #prints the snps on command line to double check if the table and results were gathered and formatted correctly
-        return jsonify(snps) #returns that to the website
+        return jsonify(snps)
 
-    #error handling - if there are any other errors that were not taken into account
     except Exception as e:
         print(f"Error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+
+
+
+@app.route('/api/gene/population-info/<population_name>/<rs_id>', methods=['GET'])
+def get_population_info(population_name, rs_id):
+
+    try:
+        conn = sqlite3.connect('SNP_DATABASE.db')
+        cursor = conn.cursor()
+
+        print(f"Connected")
+
+        query_population = """
+            SELECT
+                POPULATION_SNP.rs_id,
+                POPULATION.region,
+                POPULATION_SNP.specific_region,
+                POPULATION_SNP.num_participants,
+                POPULATION_SNP.gender
+            FROM POPULATION_SNP
+            JOIN POPULATION ON POPULATION_SNP.population_id = POPULATION.population_id
+            WHERE POPULATION.population_name = ? AND POPULATION_SNP.rs_id = ?
+        """
+        cursor.execute(query_population, (population_name,rs_id))
+        rows = cursor.fetchall()
+        conn.close()
+
+        if not rows:
+            return jsonify({"error": "No data was found"}), 404
+
+        population_info = [] 
+        for row in rows:
+            population_info.append({
+                'rs_id': row[0],
+                'Region': row[1],
+                'Specific Region': row[2],
+                'Participants': row[3],
+                'Gender': row[4]
+                
+            })
+        print(population_info)
+        return jsonify(population_info)
+    
+    except Exception as e:
+        print(f"Error in get_population_info: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 
@@ -162,52 +210,6 @@ def get_gene_info(gene_symbol):
 
     except Exception as e:
         print(f"Error in get_gene_info: {str(e)}")
-        return jsonify({"error": str(e)}), 500
-
-
-
-@app.route('/api/gene/population-info/<population_name>/<rs_id>', methods=['GET'])
-def get_population_info(population_name, rs_id):
-
-    try:
-        conn = sqlite3.connect('SNP_DATABASE.db')
-        cursor = conn.cursor()
-
-        print(f"Connected")
-
-        query_population = """
-            SELECT
-                POPULATION_SNP.rs_id,
-                POPULATION.region,
-                POPULATION_SNP.specific_region,
-                POPULATION_SNP.num_participants,
-                POPULATION_SNP.gender
-            FROM POPULATION_SNP
-            JOIN POPULATION ON POPULATION_SNP.population_id = POPULATION.population_id
-            WHERE POPULATION.population_name = ? AND POPULATION_SNP.rs_id = ?
-        """
-        cursor.execute(query_population, (population_name,rs_id))
-        rows = cursor.fetchall()
-        conn.close()
-
-        if not rows:
-            return jsonify({"error": "No data was found"}), 404
-
-        population_info = [] 
-        for row in rows:
-            population_info.append({
-                'rs_id': row[0],
-                'Region': row[1],
-                'Specific Region': row[2],
-                'Participants': row[3],
-                'Gender': row[4]
-                
-            })
-        print(population_info)
-        return jsonify(population_info)
-    
-    except Exception as e:
-        print(f"Error in get_population_info: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 
