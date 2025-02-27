@@ -1,33 +1,53 @@
 import React, { useState } from 'react';
 import './SouthAsia.css';
-// Importing images
-import BangChr6_2 from './images/TAJD bang-chr-6-2.png';
-import BangChr8_2 from './images/TAJD bang-chr-8-2.png';
-import BangChr10_2 from './images/TAJD bang-chr10-2.png';
-import BangChr11_2 from './images/TAJD bang-chr-11-2.png';
-import PakChr3_2 from './images/TAJD pak-chr3-2.png';
-import PakChr10_2 from './images/TAJD pak-chr10-2.png';
-import PakChr13_2 from './images/TAJD pak-chr-13-2.png';
-import PakChr20_2 from './images/TAJD pak-20-2.png';
+
+// Tajima D Summary Statistic Images (Sorted by Chromosome Number)
+import BangChr6 from './images/Bangladesh-chr6.png';
+import BangChr8 from './images/Bangladesh-chr8.png';
+import BangChr10 from './images/Bangladesh-chr10.png';
+import BangChr10_2 from './images/Bangladesh-chr10.2.png';
+import BangChr11 from './images/Bangladesh-chr11.png';
+
+import PakChr3 from './images/Pakistan-chr3.png';
+import PakChr10 from './images/Pakistan-chr10.png';
+import PakChr13 from './images/Pakistan-chr13.png';
+import PakChr20 from './images/Pakistan-chr20.png';
+
+// EHH Summary Statistics Images (Sorted by Chromosome Number)
+import BangSNPrs7756992 from './images/Bangladesh-SNPrs7756992-chr6.png';
+import BangSNPrs13266634 from './images/Bangladesh-SNPrs13266634-chr8.png';
+import BangSNPrs1111875 from './images/Bangladesh-SNPrs1111875-chr10.png';
+import BangSNPrs7903146 from './images/Bangladesh-SNPrs7903146-chr10.png';
+import BangSNPrs12255372 from './images/Bangladesh-SNPrs12255372-chr10.png';
+import BangSNPrs5219 from './images/Bangladesh-SNPrs5219-chr11.png';
+
+import PakSNPrs2241766_3 from './images/Pakistan-SNPrs2241766-chr3.png';
+import PakSNPrs7903146 from './images/Pakistan-SNPrs7903146-chr10.png';
+import PakSNPrs1805097 from './images/Pakistan-SNPrs1805097-chr13.png';
+import PakSNPrs2241766_20 from './images/Pakistan-SNPrs2241766-chr20.png';
 
 function SouthAsia() {
   const [modalImage, setModalImage] = useState(null);
 
-  // Function to open modal with image
   const openModal = (imageSrc) => {
     setModalImage(imageSrc);
   };
 
-  // Function to close modal
   const closeModal = () => {
     setModalImage(null);
   };
 
-  // Function to download image
   const downloadImage = (imageSrc, imageName) => {
     const link = document.createElement('a');
     link.href = imageSrc;
-    link.download = imageName; // Set the download name for the image
+    link.download = imageName;
+    link.click();
+  };
+
+  const downloadCSV = (csvFile) => {
+    const link = document.createElement('a');
+    link.href = `/csv/${csvFile}`;
+    link.download = csvFile;
     link.click();
   };
 
@@ -42,151 +62,80 @@ function SouthAsia() {
 
       <div className="stats-list">
         {/* Bangladesh Section */}
-        <div className="country-stats">
+        <section>
           <h2>Bangladesh</h2>
-          <div className="image-container">
-            <img
-              src={BangChr6_2}
-              alt="Tajima's D for Bangladesh (Chromosome 6 - 2)"
-              className="summary-image"
-              onClick={() => openModal(BangChr6_2)}
-            />
-            
-            <button
-              className="download-button"
-              onClick={() => downloadImage(BangChr6_2, 'BangChr6_2.png')}
-            >
-              Download Image
-            </button>
+          
+          {/* Tajima D Summary Statistic */}
+          <div className="country-stats">
+            <h3>Tajima D Summary Statistic</h3>
+            {[BangChr6, BangChr8, BangChr10, BangChr10_2, BangChr11].map((image, index) => (
+              <div className="image-container" key={index}>
+                <img src={image} alt={`Bangladesh Chromosome ${index + 1}`} className="summary-image" onClick={() => openModal(image)} />
+                <button className="download-button" onClick={() => downloadImage(image, `Bangladesh-Chr${index + 1}.png`)}>Download Image</button>
+                <button className="download-button" onClick={() => downloadCSV('TajimaDBangladesh.csv')}>Download CSV</button>
+              </div>
+            ))}
           </div>
-          <div className="image-container">
-            <img
-              src={BangChr8_2}
-              alt="Tajima's D for Bangladesh (Chromosome 8 - 2)"
-              className="summary-image"
-              onClick={() => openModal(BangChr8_2)}
-            />
-            <button
-              className="download-button"
-              onClick={() => downloadImage(BangChr8_2, 'BangChr8_2.png')}
-            >
-              Download Image
-            </button>
+
+          {/* EHH Summary Statistics */}
+          <div className="country-stats">
+            <h3>EHH Summary Statistics</h3>
+            {[BangSNPrs7756992, BangSNPrs13266634, BangSNPrs1111875, BangSNPrs7903146, BangSNPrs12255372, BangSNPrs5219].map((image, index) => (
+              <div className="image-container" key={index}>
+                <img src={image} alt={`Bangladesh SNP Chromosome ${index + 1}`} className="summary-image" onClick={() => openModal(image)} />
+                <button className="download-button" onClick={() => downloadImage(image, `Bangladesh-SNP-Chr${index + 1}.png`)}>Download Image</button>
+                <button className="download-button" onClick={() => downloadCSV('EHHSNPBangladesh.csv')}>Download CSV</button>
+              </div>
+            ))}
           </div>
-          <div className="image-container">
-            <img
-              src={BangChr10_2}
-              alt="Tajima's D for Bangladesh (Chromosome 10 - 2)"
-              className="summary-image"
-              onClick={() => openModal(BangChr10_2)}
-            />
-            <button
-              className="download-button"
-              onClick={() => downloadImage(BangChr10_2, 'BangChr10_2.png')}
-            >
-              Download Image
-            </button>
-          </div>
-          <div className="image-container">
-            <img
-              src={BangChr11_2}
-              alt="Tajima's D for Bangladesh (Chromosome 11 - 2)"
-              className="summary-image"
-              onClick={() => openModal(BangChr11_2)}
-            />
-            <button
-              className="download-button"
-              onClick={() => downloadImage(BangChr11_2, 'BangChr11_2.png')}
-            >
-              Download Image
-            </button>
-          </div>
-        </div>
+        </section>
 
         {/* Pakistan Section */}
-        <div className="country-stats">
+        <section>
           <h2>Pakistan</h2>
-          <div className="image-container">
-            <img
-              src={PakChr3_2}
-              alt="Tajima's D for Pakistan (Chromosome 3 - 2)"
-              className="summary-image"
-              onClick={() => openModal(PakChr3_2)}
-            />
-            <button
-              className="download-button"
-              onClick={() => downloadImage(PakChr3_2, 'PakChr3_2.png')}
-            >
-              Download Image
-            </button>
+          
+          {/* Tajima D Summary Statistic */}
+          <div className="country-stats">
+            <h3>Tajima D Summary Statistic</h3>
+            {[PakChr3, PakChr10, PakChr13, PakChr20].map((image, index) => (
+              <div className="image-container" key={index}>
+                <img src={image} alt={`Pakistan Chromosome ${index + 1}`} className="summary-image" onClick={() => openModal(image)} />
+                <button className="download-button" onClick={() => downloadImage(image, `Pakistan-Chr${index + 1}.png`)}>Download Image</button>
+                <button className="download-button" onClick={() => downloadCSV('TajimaDPakistan.csv')}>Download CSV</button>
+              </div>
+            ))}
           </div>
-          <div className="image-container">
-            <img
-              src={PakChr10_2}
-              alt="Tajima's D for Pakistan (Chromosome 10 - 2)"
-              className="summary-image"
-              onClick={() => openModal(PakChr10_2)}
-            />
-            <button
-              className="download-button"
-              onClick={() => downloadImage(PakChr10_2, 'PakChr10_2.png')}
-            >
-              Download Image
-            </button>
+
+          {/* EHH Summary Statistics */}
+          <div className="country-stats">
+            <h3>EHH Summary Statistics</h3>
+            {[PakSNPrs2241766_3, PakSNPrs7903146, PakSNPrs1805097, PakSNPrs2241766_20].map((image, index) => (
+              <div className="image-container" key={index}>
+                <img src={image} alt={`Pakistan SNP Chromosome ${index + 1}`} className="summary-image" onClick={() => openModal(image)} />
+                <button className="download-button" onClick={() => downloadImage(image, `Pakistan-SNP-Chr${index + 1}.png`)}>Download Image</button>
+                <button className="download-button" onClick={() => downloadCSV('EHHSNPPakistan.csv')}>Download CSV</button>
+              </div>
+            ))}
           </div>
-          <div className="image-container">
-            <img
-              src={PakChr13_2}
-              alt="Tajima's D for Pakistan (Chromosome 13 - 2)"
-              className="summary-image"
-              onClick={() => openModal(PakChr13_2)}
-            />
-            <button
-              className="download-button"
-              onClick={() => downloadImage(PakChr13_2, 'PakChr13_2.png')}
-            >
-              Download Image
-            </button>
-          </div>
-          <div className="image-container">
-            <img
-              src={PakChr20_2}
-              alt="Tajima's D for Pakistan (Chromosome 20 - 2)"
-              className="summary-image"
-              onClick={() => openModal(PakChr20_2)}
-            />
-            <button
-              className="download-button"
-              onClick={() => downloadImage(PakChr20_2, 'PakChr20_2.png')}
-            >
-              Download Image
-            </button>
-          </div>
-        </div>
+        </section>
       </div>
 
       {/* Modal for displaying enlarged image */}
       {modalImage && (
         <div className="modal" onClick={closeModal}>
           <div className="modal-content">
-            <img src={modalImage} alt="Enlarged Tajima's D" className="modal-image" />
+            <img src={modalImage} alt="Enlarged Summary Statistic" className="modal-image" />
             <button className="close-btn" onClick={closeModal}>Close</button>
           </div>
         </div>
       )}
-      
+
       <footer>
-  <p>Summary Statistics for South Asia</p>
-  <p className="footer-group-name">
-    © 2025 Xenial Xerus. All rights reserved.
-  </p>
-</footer>
+        <p>Summary Statistics for South Asia</p>
+        <p className="footer-group-name">© 2025 Xenial Xerus. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
 
 export default SouthAsia;
-
-
-
-
