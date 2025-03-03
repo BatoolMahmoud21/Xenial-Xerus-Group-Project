@@ -21,6 +21,8 @@ function SNPPage() {
               <th>End Position</th>
               <th>p Value</th>
               <th>Population</th>
+              <th>Tajimas D value</th>
+              <th>EHH</th>
             </tr>
           </thead>
           <tbody>
@@ -38,7 +40,10 @@ function SNPPage() {
                 <td>
                   {/* Link with both Population and rs_id */}
                   <Link to={`/population/${snp.Population}/${snp.rs_id}`}>{snp.Population}</Link>
+                
                 </td>
+                <td>{snp['Tajimas D value']}</td>
+                <td>{snp.EHH}</td>
               </tr>
             ))}
           </tbody>
