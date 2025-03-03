@@ -10,13 +10,13 @@ function EastAsia() {
       <header className="page-header">
       <button className="home-button" onClick={() => navigate('/')}>
       Home</button>
-        <h1 className="header">Summary Statistics - East Asia</h1>
+        <h1 className="header">Summary Statistics</h1>
       </header>
 
       <div className="stats-list">
+      <h2 className="country-heading">China</h2>
         {/* China Section */}
-        <section>
-          <h2>China</h2>
+        <section className="country-stats">
           <p>
             <strong>Genome-wide association study in a Chinese population identifies a susceptibility locus for type 2 diabetes at 7q32 near PAX4</strong> – 
             <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3648687/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
@@ -50,8 +50,8 @@ function EastAsia() {
         </section>
 
         {/* Japan Section */}
-        <section>
-          <h2>Japan</h2>
+        <h2 className="country-heading">Japan</h2>
+        <section className="country-stats">
           <p>
             <strong>Genome-Wide Association Studies in the Japanese Population Identify Seven Novel Loci for Type 2 Diabetes</strong> – 
             <a href="https://www.nature.com/articles/ncomms10531" target="_blank" rel="noopener noreferrer">
