@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SouthAsia.css';
 
 // Tajima D Summary Statistic Images (Sorted by Chromosome Number)
@@ -54,12 +55,13 @@ function SouthAsia() {
     link.click(); // Trigger the download
     document.body.removeChild(link); // Remove the link element after clicking
   };
+  const navigate = useNavigate(); // Define navigate function
 
   return (
     <div className="SouthAsia">
       <header className="page-header">
-        <button className="home-button" onClick={() => alert('Home clicked')}>
-          Home
+      <button className="home-button" onClick={() => navigate('/')}>
+      Home
         </button>
         <h1 className="header">Summary Statistics</h1>
       </header>

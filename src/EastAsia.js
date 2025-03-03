@@ -1,11 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './EastAsian.css';
 
 function EastAsia() {
+  const navigate = useNavigate(); // Define navigate function
+
   return (
     <div className="EastAsia">
       <header className="page-header">
-        <button className="home-button" onClick={() => alert('Home clicked')}>Home</button>
+      <button className="home-button" onClick={() => navigate('/')}>
+      Home</button>
         <h1 className="header">Summary Statistics - East Asia</h1>
       </header>
 
