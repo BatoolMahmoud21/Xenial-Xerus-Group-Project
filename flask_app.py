@@ -73,7 +73,9 @@ def search():
                 GENES.start_pos,
                 GENES.end_pos,
                 POPULATION_SNP.p_value,
-                POPULATION.population_name
+                POPULATION.population_name,
+                POPULATION_SNP.tajimas_d_value,
+                POPULATION_SNP.EHH
             FROM SNPS 
             JOIN GENES ON SNPS.gene_id = GENES.gene_id
             JOIN POPULATION_SNP ON SNPS.rs_id = POPULATION_SNP.rs_id
@@ -104,7 +106,9 @@ def search():
                 'Start Position': row[4],
                 'End Position': row[5],
                 'p Value': row[6],
-                'Population': row[7]
+                'Population': row[7],
+                'Tajimas D value': row[8],
+                'EHH': row[9]
             })
 
         return jsonify(snps)
