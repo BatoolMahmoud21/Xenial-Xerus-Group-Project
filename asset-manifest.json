@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Xenial-Xerus-Group-Project/static/css/main.25d07fed.css",
-    "main.js": "/Xenial-Xerus-Group-Project/static/js/main.be017ef0.js",
+    "main.css": "/Xenial-Xerus-Group-Project/static/css/main.8c1fedd3.css",
+    "main.js": "/Xenial-Xerus-Group-Project/static/js/main.88ebcc24.js",
     "static/media/Bangladesh-chr8.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-chr8.83446d5d0e612d6c1057.png",
     "static/media/Bangladesh-chr11.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-chr11.011e21517953df57fe77.png",
     "static/media/Bangladesh-chr10.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-chr10.d53abe5ba6d9d90a2bd8.png",
@@ -22,11 +22,11 @@
     "static/media/Bangladesh-SNPrs5219-chr11.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-SNPrs5219-chr11.7b7ecbc3336966ef4383.png",
     "static/media/Bangladesh-SNPrs7756992-chr6.png": "/Xenial-Xerus-Group-Project/static/media/Bangladesh-SNPrs7756992-chr6.4e0041edfea6b7d99b26.png",
     "index.html": "/Xenial-Xerus-Group-Project/index.html",
-    "main.25d07fed.css.map": "/Xenial-Xerus-Group-Project/static/css/main.25d07fed.css.map",
-    "main.be017ef0.js.map": "/Xenial-Xerus-Group-Project/static/js/main.be017ef0.js.map"
+    "main.8c1fedd3.css.map": "/Xenial-Xerus-Group-Project/static/css/main.8c1fedd3.css.map",
+    "main.88ebcc24.js.map": "/Xenial-Xerus-Group-Project/static/js/main.88ebcc24.js.map"
   },
   "entrypoints": [
-    "static/css/main.25d07fed.css",
-    "static/js/main.be017ef0.js"
+    "static/css/main.8c1fedd3.css",
+    "static/js/main.88ebcc24.js"
   ]
 }
