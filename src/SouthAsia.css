@@ -24,6 +24,17 @@ body {
   margin: 0;  /* Remove any margins from the container */
 }
 
+/* Styling for the subheadings (Bangladesh, Pakistan) outside the white background */
+.SouthAsia .country-heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 3rem;
+  margin-bottom: 10px;
+  color: #333;
+  padding-bottom: 5px;
+  text-align: center;  /* Center the headings */
+}
+
 /* Styling for the header in South Asia */
 .SouthAsia header {
   background-color: #ec7878;  /* Header background color */
@@ -98,6 +109,7 @@ body {
 /* Styling for the images to make them the same size and stretch */
 .summary-image {
   width: 100%;
+  max-width: 900px; /* Set a max-width to limit the size */
   height: auto;
   object-fit: contain;
   margin: 20px 0;
@@ -114,11 +126,14 @@ body {
 /*image container to center the buttons */
 .image-container {
   display: flex;
-  flex-direction: row; /* Align items horizontally */
-  align-items: center;  /* Vertically center the content */
+  flex-direction: column;  /* Stack image and buttons vertically */
+  align-items: center;     /* Center both image and buttons */
   justify-content: center; /* Center the content horizontally */
   text-align: center;
-  gap: 40px; /* Adds space between the buttons */
+  gap: 10px; /* Adds space between the buttons */
+  border-bottom: 1px solid #d3d3d3;  /* Light grey bottom border */
+  padding-bottom: 15px;  /* Adds space for the border */
+  width: 100%;
 }
 
 .download-button {
