@@ -68,8 +68,9 @@ function SouthAsia() {
 
       <div className="stats-list">
         {/* Bangladesh Section */}
+        <h2 className="country-heading">Bangladesh</h2>
+
         <section>
-          <h2>Bangladesh</h2>
           
           {/* Tajima D Summary Statistic */}
           <div className="country-stats">
@@ -129,8 +130,9 @@ function SouthAsia() {
         </div> {/* Closing Bangladesh EHH Summary Statistics */}
 
         {/* Pakistan Section */}
+        <h2 className="country-heading">Pakistan</h2>
+
         <section>
-          <h2>Pakistan</h2>
           
           {/* Tajima D Summary Statistic */}
           <div className="country-stats">
