@@ -1,0 +1,177 @@
+/* Apply background color to the entire body */
+body {
+  background-color: #ec7878;  /* Light red background for the whole page */
+  margin: 0;  /* Remove default body margins */
+  font-family: sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ensure the body takes up the entire viewport height */
+}
+
+/* Main container for the East Asia page (excluding header) */
+.EastAsia {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures it takes the full height of the viewport */
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  background-color: transparent;
+  flex-grow: 1;  /* Ensures the content grows and pushes footer down */
+  padding-top: 120px;  /* Ensure content doesn't overlap the fixed header */
+  overflow-x: hidden;  /* To avoid horizontal scrollbars */
+  margin: 0;  /* Remove any margins from the container */
+}
+
+/* Styling for the subheadings (China, Japan) outside the white background */
+.EastAsia .country-heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 3rem;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;  /* Center the headings */
+}
+
+/* Styling for the header in East Asia */
+.EastAsia header {
+  background-color: #ec7878;  /* Header background color */
+  padding: 20px;
+  width: 100%;  /* Ensure the header spans the full width of the page */
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the header text inside East Asia */
+.EastAsia .header {
+  color: rgb(7, 0, 0);
+  font-size: 2rem;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Styling for the Home button */
+.EastAsia .home-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #ec7878;
+  color: rgb(2, 0, 0);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+/* Styling for the content section (country stats) */
+.EastAsia .country-stats {
+  background-color: #ffffff;  /* White background for content area */
+  padding: 40px 20px; /* Increased padding for larger content */
+  margin-top: 30px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);  /* Larger and subtler shadow for content */
+  width: 100%;  /* Limit the width to 90% of the page */
+  max-width: 1200px;  /* Set a maximum width to avoid content stretching too far */
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;  /* Stack the content vertically */
+  align-items: center;  /* Center content horizontally */
+  margin-left: auto;  /* Center horizontally */
+  margin-right: auto;  /* Center horizontally */
+  overflow: hidden;  /* Prevent any overflow of content */
+}
+
+/* Styling for the table inside East Asia */
+.EastAsia .stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.EastAsia .stats-table th, .EastAsia .stats-table td {
+  padding: 8px 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.EastAsia .stats-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.EastAsia .stats-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.EastAsia .stats-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Styling for the footer section in East Asia */
+.EastAsia footer {
+  background-color: #ec7878;  /* Same color as the header */
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  color: rgb(7, 0, 0);  /* Footer text color */
+  position: relative;
+  bottom: 0;
+  margin-top: 50px;  /* Ensures footer sticks at the bottom */
+  z-index: 1000;
+  margin-top: auto; /* Push the footer to the bottom if there's less content */
+}
+
+/* Footer text styling */
+.EastAsia footer p {
+  margin: 0;
+  color: black;  /* Footer text color in black */
+}
+
+/* EastAsian.css */
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  cursor: pointer; 
+}
+
+.stats-table th, .stats-table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  max-width: 90%;
+  overflow: auto;
+}
+
+.close-btn {
+  padding: 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}

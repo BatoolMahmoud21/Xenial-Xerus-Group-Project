@@ -1,0 +1,136 @@
+/* This is for HOME page*/
+.container {
+  display: flex;                
+  gap: 20px;                    
+  justify-content: center;      
+  align-items: center;          
+  height: 100vh;
+             
+}
+
+/* Styling for each box */
+.box {
+  width: 300px;                 
+  height: 300px;                
+  display: flex;                
+  justify-content: center;      
+  align-items: center;          
+  background-color: #b12121;    
+  color: white;                 
+  border-radius: 20px;          
+  font-size: 22px;              
+  font-weight: bold;            
+  text-align: center;
+  margin-top: -400px;
+}
+
+
+h1 {
+  color: black;
+  text-align:center;
+  font-family: 'Franklin Gothic Medium';
+}
+
+h3 {
+  color: rgb(0, 0, 0);
+  text-align:center;
+}
+
+p {
+  color: black;
+  text-align: center;
+}
+
+header {
+  background-color: #ec7878; /* Change the background colour of the header */
+  color: white; /* Change the text colour to contrast with the background */
+  padding: 10px 0;
+  text-align: center;
+}
+
+footer {
+  background-color: #470808; /* Change the background colour of the footer */
+  color: white;
+  padding: 15px 0;
+  
+  
+}
+
+footer p {
+  color: white;
+  text-align: left;
+  padding: 20px
+}
+
+.App {
+  background-color: #e8bebecc;
+}
+
+
+
+.research-section {
+  display: block;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+ 
+  
+}
+
+.section-heading {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px; 
+}
+
+
+.graph img {
+  width: 50%;  
+  height: auto;  
+  border-radius: 8px;  
+  max-width: 100%; 
+  margin-left: 10px;
+}
+
+.graph {
+  margin-right: 20px;
+}
+
+.description {
+  color: black;
+  flex-grow: 1;
+  margin-top: 0;
+  margin-left: 0;
+  max-width: 300px;
+  word-wrap: break-word;
+  margin-right: 300px;
+
+}
+
+.graph-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+
+.home-main-image {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  width: 100%;  
+  margin: 0;         
+}
+
+.home-main-image img {
+  width: 30%;              
+  max-width: 100%; 
+  margin-left: 550px;           
+  margin-right: 0px;  
+  border-radius: 15px;       
+}
+
