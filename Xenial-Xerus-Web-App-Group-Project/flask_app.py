@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def welcome():
-    print("Welcome)
+    print("Welcome")
 
 @app.route('/api/search', methods=['GET'])
 def search():
