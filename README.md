@@ -17,7 +17,7 @@ This project involves the development of a web-based application designed to ret
 * SQLite Database: Stores genetic data, population information, and SNP annotations for efficient querying.
 * Summary Statistics and Visualization: Utilized Apocrita: bcftools and vcftools, NumPy, Pandas for data manipulation and Matplotlib and Rstudio for generating plots and visualization.
 
-# How to install and use
+# How to install and use (Unix/Command Line)
 1. Clone or download the project repository to your local machine.
 2. Install Node.js (node and npm), Python and Flask
 3. Navigate to the project directory
