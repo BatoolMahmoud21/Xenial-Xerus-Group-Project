@@ -53,7 +53,7 @@ function Home() {
         <form onSubmit={handleSearchSubmit} style={{ display: 'flex', justifyContent: 'center' }}>
           <input
             type="text"
-            placeholder="Search by either rs ID, Gene Symbol, Chromosome, Start Position or End Position"
+            placeholder="Search by either rs ID, Gene Symbol (mapped gene), Chromosome, Start Position or End Position"
             value={searchQuery}
             onChange={handleSearchQueryChange}
             style={{
